@@ -1,0 +1,5 @@
+JpaSpecificationExecutor
+
+PagingAndSortingRepository
+
+Specification

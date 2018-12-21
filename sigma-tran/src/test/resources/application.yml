@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.2.211:3306/sigma
+      username: root
+      password: 123456
+  rabbitmq:
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: coupon
+    addresses: 127.0.0.1:5672
+    publisher-confirms: true
+server:
+  port: 0

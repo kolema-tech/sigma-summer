@@ -1,0 +1,23 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+/sigma-sample/*
+/.idea
+/sigma-redis/*.iml
+/sigma-redis/sigma-redis.iml
+/sigma-redis/sigma-redis.iml
