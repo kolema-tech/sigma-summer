@@ -33,6 +33,7 @@
         <module>sigma-soa</module>
         <module>sigma-data-mybatis</module>
         <module>sigma-data-redis</module>
+        <module>sigma-datamap</module>
     </modules>
 
     <parent>
