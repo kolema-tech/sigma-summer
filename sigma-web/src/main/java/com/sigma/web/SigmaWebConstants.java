@@ -9,6 +9,7 @@ package com.sigma.web;
 public class SigmaWebConstants {
 
     public static final String SIGMA_HEADER = "header";
+    public static final String SIGMA_MOCK_TAG= "mockData";
 
     public static final String DEFAULT_PATH_PATTERN = "/api/**";
 
