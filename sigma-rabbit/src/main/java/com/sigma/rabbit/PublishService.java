@@ -43,6 +43,11 @@ public class PublishService implements RabbitTemplate.ConfirmCallback, RabbitTem
         return rabbitTemplate.convertSendAndReceive(exchange, routingKey, object, correlationData);
     }
 
+    public void send(MessageExchange messageExchange, SigmaMessage sigmaMessage) {
+        CorrelationData correlationData = new CorrelationData(sigmaMessage.getId());
+        rabbitTemplate.convertAndSend(messageExchange.getExchange(), messageExchange.getRoutingKey(), sigmaMessage, correlationData);
+    }
+
     /**
      * 确认回调
      *
