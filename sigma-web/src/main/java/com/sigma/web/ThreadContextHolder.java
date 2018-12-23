@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.sigma.web.SigmaWebConstants.SIGMA_HEADER;
+import static com.sigma.web.SigmaWebConstants.SIGMA_MOCK_TAG;
 
 /**
  * @author zen peng.
@@ -26,6 +27,7 @@ public class ThreadContextHolder {
     static {
         PATH_DICT = new HashMap<>();
         registerPath(SIGMA_HEADER, SigmaRequestHeader.class);
+        registerPath(SIGMA_MOCK_TAG,Boolean.class);
     }
 
     public static Map<String, Class<?>> getPathDict() {
@@ -127,5 +129,9 @@ public class ThreadContextHolder {
 
     public static SigmaRequestHeader getHeader() {
         return getValue(SIGMA_HEADER, SigmaRequestHeader.class);
+    }
+
+    public static Boolean mockData(){
+       return getValue(SIGMA_MOCK_TAG,Boolean.class);
     }
 }

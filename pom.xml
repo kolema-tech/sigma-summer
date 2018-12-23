@@ -34,6 +34,7 @@
         <module>sigma-data-mybatis</module>
         <module>sigma-data-redis</module>
         <module>sigma-datamap</module>
+        <module>sigma-mockserver</module>
     </modules>
 
     <parent>
