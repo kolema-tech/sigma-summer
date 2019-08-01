@@ -1,0 +1,66 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: sigma-zuul-gateway
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+server:
+  port: 18889
+
+#--------------------Zuul-----------------------
+zuul:
+  routes:
+    member:
+      path: /member/**
+      serviceId: member-ms
+      sensitiveHeaders: "*"
+    auth:
+      path: /auth/**
+      serviceId: member-auth-server
+      sensitiveHeaders: "*"
+    upload:
+      path: /upload/**
+      serviceId: upload-rest
+      sensitiveHeaders: "*"
+  retryable: false
+  ignored-services: "*"
+  ribbon:
+    eager-load:
+      enabled: true
+  host:
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
+  add-proxy-headers: true
+  ignored-headers: Access-Control-Allow-Origin # 不传递到下游服务
+  sensitive-headers: Access-Control-Allow-Origin  #
+
+#----------------------超时配置-------------------
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+  MaxAutoRetries: 3 #Max number of retries on the same server (excluding the first try)
+  MaxAutoRetriesNextServer: 2 #Max number of next servers to retry (excluding the first server)
+  eureka:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/

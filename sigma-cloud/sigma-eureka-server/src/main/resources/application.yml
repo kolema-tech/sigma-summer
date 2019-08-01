@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: sigma-eureka-server
+  profiles:
+    active: local
+
+server:
+  port: 1111

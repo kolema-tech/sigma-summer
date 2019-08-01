@@ -1,0 +1,14 @@
+swagger:
+  enable: true
+  client-id:
+  client-secret:
+  access-token-uri: http://localhost:18889/auth/oauth/token
+  base-package: com.sigma.examples
+  base-path: /api/**
+  api-names:
+    -
+    - school
+
+spring:
+  application:
+    name: samples

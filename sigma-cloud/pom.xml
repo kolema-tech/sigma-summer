@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sigma-summer</artifactId>
+        <groupId>com.sigma</groupId>
+        <version>1.0.6-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sigma-cloud</artifactId>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
+    </properties>
+
+    <modules>
+        <module>sigma-eureka-server</module>
+        <module>sigma-spring-boot-admin</module>
+        <module>sigma-zuul-gateway</module>
+        <module>sigma-auth-server</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

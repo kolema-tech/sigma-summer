@@ -1,0 +1,63 @@
+PUT _template/dqlog
+{
+  "index_patterns": "log-*",
+  "settings": {
+    "index.number_of_shards": 3,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "doc": {
+      "_meta": {
+        "version": "6.7.2"
+      },
+      "date_detection": false,
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "class": {
+          "type": "text"
+        },
+        "hasEx": {
+          "type": "keyword"
+        },
+        "ip": {
+          "type": "text"
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "line": {
+          "type": "integer"
+        },
+        "logger": {
+          "type": "text"
+        },
+        "message": {
+          "type": "text"
+        },
+        "method": {
+          "type": "text"
+        },
+        "msApp": {
+          "type": "keyword"
+        },
+        "parentSpanId": {
+          "type": "text"
+        },
+        "spanId": {
+          "type": "text"
+        },
+        "stack_trace": {
+          "type": "text"
+        },
+        "thread": {
+          "type": "text"
+        },
+        "traceId": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}

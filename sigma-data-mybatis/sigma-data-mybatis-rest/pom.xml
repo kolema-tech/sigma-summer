@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sigma-data-mybatis-rest</artifactId>
+    <version>${parent.version}</version>
+    <packaging>jar</packaging>
+
+    <name>sigma-data-mybatis-rest</name>
+    <description>Demo project for Spring Boot</description>
+
+    <parent>
+        <groupId>com.sigma</groupId>
+        <artifactId>sigma-data-mybatis</artifactId>
+        <version>1.0.5-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+    </properties>
+
+    <dependencies>
+        <!-- core -->
+        <dependency>
+            <groupId>com.sigma</groupId>
+            <artifactId>sigma-data-mybatis-core</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <!-- sigma -->
+        <dependency>
+            <groupId>com.sigma</groupId>
+            <artifactId>sigma-core</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sigma</groupId>
+            <artifactId>sigma-web</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sigma</groupId>
+    <artifactId>sigma-summer</artifactId>
+    <version>1.0.6-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>sigma-summer</name>
+    <description>Demo project for Spring Boot</description>
+
+    <modules>
+        <module>sigma-core</module>
+        <module>sigma-business</module>
+        <module>sigma-cloud</module>
+        <!--<module>sigma-tran</module>-->
+        <!--<module>sigma-feign</module>-->
+        <!--<module>sigma-scheduler</module>-->
+        <module>sigma-rule-engine</module>
+        <!--<module>sigma-redis</module>-->
+        <!--<module>sigma-sample</module>-->
+        <module>sigma-data</module>
+        <module>sigma-logging</module>
+        <!--<module>sigma-statemachine</module>-->
+        <module>sigma-generator</module>
+        <!--<module>sigma-zookeeper</module>-->
+        <module>sigma-test</module>
+        <module>sigma-security</module>
+        <module>sigma-web</module>
+        <module>sigma-rabbit</module>
+        <module>sigma-xxljob</module>
+        <module>sigma-soa</module>
+        <module>sigma-data-mybatis</module>
+        <module>sigma-data-redis</module>
+        <module>sigma-pay</module>
+        <!--<module>sigma-cloud</module>-->
+        <module>sigma-yun</module>
+        <module>sigma-sdk</module>
+
+        <module>dev-app</module>
+
+        <module>sigma-web-swagger-spring-boot-starter</module>
+        <module>samples</module>
+        <module>sigma-email</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <lombok.version>1.16.20</lombok.version>
+        <swagger.version>2.6.1</swagger.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>26.0-jre</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- 要将源码放上去，需要加入这个插件 -->
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Releases</name>
+            <url>http://XXX:8081/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot</name>
+            <url>http://XXX:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <!-- 配置nexus远程仓库 -->
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://XXX:8081/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <!-- 配置nexus远程仓库 -->
+        <repository>
+            <id>spring</id>
+            <name>spring-m</name>
+            <url>http://XXX:8081/repository/spring-milestones/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+</project>
