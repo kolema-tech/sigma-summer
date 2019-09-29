@@ -6,12 +6,12 @@
 
     <parent>
         <artifactId>sigma-cloud</artifactId>
-        <groupId>com.sigma</groupId>
-        <version>1.0.6-SNAPSHOT</version>
+        <groupId>com.github.kolema-tech</groupId>
+        <version>1.0.7-SNAPSHOT</version>
     </parent>
 
     <artifactId>sigma-zuul-gateway</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.7-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 

@@ -10,8 +10,8 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.sigma</groupId>
-        <version>1.0.6-SNAPSHOT</version>
+        <groupId>com.github.kolema-tech</groupId>
+        <version>1.0.7-SNAPSHOT</version>
         <artifactId>sigma-summer</artifactId>
         <relativePath>../pom.xml</relativePath>
     </parent>

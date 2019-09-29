@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>sigma-summer</artifactId>
-        <groupId>com.sigma</groupId>
+        <groupId>com.github.kolema-tech</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,7 +12,7 @@
     <artifactId>sigma-tran</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.sigma</groupId>
+            <groupId>com.github.kolema-tech</groupId>
             <artifactId>sigma-core</artifactId>
             <version>1.0.0</version>
         </dependency>
@@ -23,7 +23,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.sigma</groupId>
+            <groupId>com.github.kolema-tech</groupId>
             <artifactId>sigma-data</artifactId>
             <version>1.0.0</version>
         </dependency>

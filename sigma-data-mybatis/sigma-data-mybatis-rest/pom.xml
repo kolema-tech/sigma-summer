@@ -11,9 +11,9 @@
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.sigma</groupId>
+        <groupId>com.github.kolema-tech</groupId>
         <artifactId>sigma-data-mybatis</artifactId>
-        <version>1.0.5-SNAPSHOT</version>
+        <version>1.0.7-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -22,18 +22,18 @@
     <dependencies>
         <!-- core -->
         <dependency>
-            <groupId>com.sigma</groupId>
+            <groupId>com.github.kolema-tech</groupId>
             <artifactId>sigma-data-mybatis-core</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <!-- sigma -->
         <dependency>
-            <groupId>com.sigma</groupId>
+            <groupId>com.github.kolema-tech</groupId>
             <artifactId>sigma-core</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.sigma</groupId>
+            <groupId>com.github.kolema-tech</groupId>
             <artifactId>sigma-web</artifactId>
             <version>${parent.version}</version>
         </dependency>
