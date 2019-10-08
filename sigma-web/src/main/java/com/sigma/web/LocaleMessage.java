@@ -20,11 +20,6 @@ public class LocaleMessage {
     @Autowired
     private MessageSource messageSource;
 
-    /**
-     * 设置默认语言
-     *
-     * @param lang
-     */
     public static void setLocale(String lang) {
 
         if (StringUtils.hasLength(lang)) {

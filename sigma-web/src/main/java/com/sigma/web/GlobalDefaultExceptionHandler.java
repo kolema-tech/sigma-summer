@@ -62,10 +62,10 @@ public class GlobalDefaultExceptionHandler {
      * 参数校验异常
      * 注：SpringBoot的Web组件内部集成了hibernate-validator，所以不需要额外导入JSR303包
      *
-     * @param request
-     * @param e
-     * @return
-     * @throws Exception
+     * @param request 请求
+     * @param e 异常
+     * @return SigmaResponse
+     * @throws Exception 异常
      */
     @ExceptionHandler(
             value = {MethodArgumentNotValidException.class,
@@ -104,12 +104,7 @@ public class GlobalDefaultExceptionHandler {
         return SigmaResponse.create("00000001", tip);
     }
 
-    /**
-     * 通用的SigmaException
-     *
-     * @param ex
-     * @return
-     */
+
     @ExceptionHandler({SigmaException.class})
     @ResponseBody
     public SigmaResponse handleSigmaException(SigmaException ex) {

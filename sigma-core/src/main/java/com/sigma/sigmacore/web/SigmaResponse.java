@@ -52,7 +52,7 @@ public class SigmaResponse<T> {
      * @param code    代码
      * @param message 消息
      * @param <T>     类型
-     * @return
+     * @return 响应
      */
     public static <T> SigmaResponse<T> create(String code, String message) {
         return create(code, message, null);
@@ -65,7 +65,7 @@ public class SigmaResponse<T> {
      * @param message 消息
      * @param data    数据
      * @param <T>     类型
-     * @return
+     * @return 创建的对象
      */
     public static <T> SigmaResponse<T> create(String code, String message, T data) {
         var response = new SigmaResponse<T>();

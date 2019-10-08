@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ware zhang
  * @version 1.0.0
- * @date 2018/11/6 17:56
+ * date 2018/11/6 17:56
  */
 public class I18nLocaleChangeInterceptor extends LocaleChangeInterceptor {
 

@@ -11,13 +11,13 @@ import java.util.List;
  *
  * @author ware
  * @version 1.0.2
- * @date 2018/09/18
+ * date 2018/09/18
  */
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
     /**
      * 獲取Mapper
      *
-     * @return
+     * @return BaseMapper
      */
     protected abstract BaseMapper<T> getMapper();
 

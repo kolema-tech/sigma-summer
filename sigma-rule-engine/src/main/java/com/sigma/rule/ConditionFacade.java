@@ -11,10 +11,6 @@ import java.util.function.Consumer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * @author zhenpeng
- * 條件外觀
- */
 public class ConditionFacade {
 
     /**
@@ -27,13 +23,7 @@ public class ConditionFacade {
         return JsonUtils.deserialize(json, Condition.class);
     }
 
-    /**
-     * condition執行匹配
-     *
-     * @param condition  條件
-     * @param simpleFact 事實
-     * @return 是否成功
-     */
+
     public static boolean runMatch(Condition condition, SimpleFact simpleFact, Consumer<String> msgConsumer) {
 
         checkNotNull(condition);

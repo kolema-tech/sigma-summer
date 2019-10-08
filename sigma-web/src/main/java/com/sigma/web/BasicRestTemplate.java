@@ -19,33 +19,19 @@ public class BasicRestTemplate {
         this.builder = builder;
     }
 
-    /**
-     * 設置
-     *
-     * @param basicAuthPair
-     */
+
     public BasicRestTemplate withBasicAuthPair(BasicAuthPair basicAuthPair) {
         builder.basicAuthorization(basicAuthPair.getUserName(), basicAuthPair.getPassword());
         return this;
     }
 
-    /**
-     * 超時時間
-     *
-     * @param millSeconds
-     * @return
-     */
+
     public BasicRestTemplate withReadTimeout(int millSeconds) {
         builder.setReadTimeout(millSeconds);
         return this;
     }
 
-    /**
-     * 鏈接時間
-     *
-     * @param millSeconds
-     * @return
-     */
+
     public BasicRestTemplate withConnectTimeout(int millSeconds) {
         builder.setConnectTimeout(millSeconds);
         return this;

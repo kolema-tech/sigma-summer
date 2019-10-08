@@ -77,10 +77,6 @@ public class IdWorker {
         this.workerId = getMaxWorkerId(datacenterId, maxWorkerId);
     }
 
-    /**
-     * @param workerId     工作机器ID
-     * @param datacenterId 序列号
-     */
     public IdWorker(long workerId, long datacenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
@@ -92,9 +88,6 @@ public class IdWorker {
         this.datacenterId = datacenterId;
     }
 
-    /**
-     * 获取 maxWorkerId
-     */
     protected static long getMaxWorkerId(long datacenterId, long maxWorkerId) {
         StringBuffer mpid = new StringBuffer();
         mpid.append(datacenterId);
@@ -111,9 +104,6 @@ public class IdWorker {
         return (mpid.toString().hashCode() & 0xffff) % (maxWorkerId + 1);
     }
 
-    /**
-     * 数据标识id部分
-     */
     protected static long getDatacenterId(long maxDatacenterId) {
         long id = 0L;
         try {
@@ -148,11 +138,7 @@ public class IdWorker {
         System.out.println(id.workerId);
     }
 
-    /**
-     * 获取下一个ID
-     *
-     * @return
-     */
+
     public synchronized long nextId() {
         long timestamp = timeGen();
         if (timestamp < lastTimestamp) {

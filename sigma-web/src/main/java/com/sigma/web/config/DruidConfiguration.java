@@ -21,11 +21,7 @@ public class DruidConfiguration {
     @Value("${druid.password:daniu}")
     private String password;
 
-    /**
-     * 注册一个StatViewServlet
-     *
-     * @return
-     */
+
     @Bean
     public ServletRegistrationBean druidStatViewServlet() {
 
@@ -44,11 +40,7 @@ public class DruidConfiguration {
         return servletRegistrationBean;
     }
 
-    /**
-     * 注册一个：filterRegistrationBean
-     *
-     * @return
-     */
+
     @Bean
     public FilterRegistrationBean druidStatFilter() {
 

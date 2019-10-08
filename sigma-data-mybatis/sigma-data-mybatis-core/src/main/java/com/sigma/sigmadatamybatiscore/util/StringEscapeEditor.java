@@ -3,9 +3,11 @@ package com.sigma.sigmadatamybatiscore.util;
 import java.beans.PropertyEditorSupport;
 
 /**
- * @author ace
- * @create 2018/2/12.
- */
+ * @author zen peng.
+ * @version 1.0
+ * date-time: 2019-09-22
+ * desc:
+ **/
 public class StringEscapeEditor extends PropertyEditorSupport {
 
     public StringEscapeEditor() {
@@ -28,12 +30,12 @@ public class StringEscapeEditor extends PropertyEditorSupport {
         }
     }
 
-    /**
-     * 处理字符转义
-     *
-     * @param value
-     * @return
-     */
+    //    /**
+//     * 处理字符转义
+//     *
+//     * @param value
+//     * @return
+//     */
     private String clearXss(String value) {
         if (value == null || "".equals(value)) {
             return value;

@@ -14,11 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  **/
 public class IpAddressUtil {
 
-    /**
-     * 获取Customer Ip
-     *
-     * @return
-     */
+
     public static String getUserAgentIp() {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) {

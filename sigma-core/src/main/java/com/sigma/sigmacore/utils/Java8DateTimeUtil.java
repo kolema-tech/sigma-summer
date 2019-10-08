@@ -32,115 +32,54 @@ public class Java8DateTimeUtil {
         return zDateTime.format(DateTimeFormatter.ofPattern(targetFormat));
     }
 
-    /**
-     * 转换器
-     */
     public static class Convertor {
-        /**
-         * String轉換為LocalDateTime
-         *
-         * @param dateTimeString
-         * @return LocalDateTime
-         */
+
         public static LocalDateTime fromDateTimeString(String dateTimeString) {
             return fromDateTimeString(dateTimeString, FM.yyyy_MM_dd_HH_mm_ss);
         }
 
-        /**
-         * String轉換為LocalDateTime
-         *
-         * @param dateTimeString
-         * @param format
-         * @return LocalDateTime
-         */
+
         public static LocalDateTime fromDateTimeString(String dateTimeString, String format) {
             var df = DateTimeFormatter.ofPattern(format);
             return LocalDateTime.parse(dateTimeString, df);
         }
 
-        /**
-         * LocalDate轉爲String
-         *
-         * @param localDateTime
-         * @return
-         */
+
         public static String toLocalDateTimeString(LocalDateTime localDateTime) {
             return toLocalDateTimeString(localDateTime, yyyy_MM_dd_HH_mm_ss);
         }
 
-        /**
-         * LocalDate轉爲String
-         *
-         * @param localDateTime
-         * @param format
-         * @return
-         */
+
         public static String toLocalDateTimeString(LocalDateTime localDateTime, String format) {
             var fmt = DateTimeFormatter.ofPattern(format);
             return localDateTime.format(fmt);
         }
 
-        /**
-         * String轉換為LocalDateTime
-         *
-         * @param dateTimeString
-         * @return LocalDateTime
-         */
+
         public static LocalDate fromDateString(String dateTimeString) {
             return fromDateString(dateTimeString, FM.yyyy_MM_dd);
         }
 
-        /**
-         * String轉換為LocalDateTime
-         *
-         * @param dateTimeString
-         * @param format
-         * @return LocalDateTime
-         */
         public static LocalDate fromDateString(String dateTimeString, String format) {
             var df = DateTimeFormatter.ofPattern(format);
             return LocalDate.parse(dateTimeString, df);
         }
 
 
-        /**
-         * LocalDate轉爲String
-         *
-         * @param localDate
-         * @return
-         */
         public static String toLocalDateString(LocalDate localDate) {
             return toLocalDateString(localDate, yyyy_MM_dd);
         }
 
-        /**
-         * LocalDate轉爲String
-         *
-         * @param localDate
-         * @param format
-         * @return
-         */
         public static String toLocalDateString(LocalDate localDate, String format) {
             var fmt = DateTimeFormatter.ofPattern(format);
             return localDate.format(fmt);
         }
 
-        /**
-         * date to LocalDate
-         *
-         * @param date
-         * @return
-         */
+
         public static LocalDate date2LocalDate(Date date) {
             return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         }
 
-        /**
-         * localDate 2 date
-         *
-         * @param localDate
-         * @return
-         */
         public static Date localDate2Date(LocalDate localDate) {
 
             var zonedDateTime = localDate.atStartOfDay(ZoneId.systemDefault());

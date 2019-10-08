@@ -12,7 +12,7 @@ import java.io.IOException;
  *
  * @author ware zhang
  * @version 1.0.0
- * @date 2018/10/30 17:18
+ * date 2018/10/30 17:18
  */
 public class RequestFilter implements Filter {
 

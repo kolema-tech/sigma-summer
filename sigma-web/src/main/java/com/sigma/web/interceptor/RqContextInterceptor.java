@@ -20,7 +20,7 @@ import static com.sigma.web.SigmaWebConstants.SIGMA_USER_NAME;
  *
  * @author ware zhang
  * @version 1.0.0
- * @date 2018/10/30 16:55
+ * date 2018/10/30 16:55
  */
 @Slf4j
 public class RqContextInterceptor extends HandlerInterceptorAdapter {

@@ -14,9 +14,6 @@ import java.util.zip.*;
 
 public class ZipUtils {
 
-    /**
-     * 使用gzip进行压缩
-     */
     public static String gzip(String primStr) {
         if (primStr == null || primStr.length() == 0) {
             return primStr;
@@ -43,12 +40,7 @@ public class ZipUtils {
         return new sun.misc.BASE64Encoder().encode(out.toByteArray());
     }
 
-    /**
-     * <p>Description:使用gzip进行解压缩</p>
-     *
-     * @param compressedStr
-     * @return
-     */
+
     public static String gunzip(String compressedStr) {
         if (compressedStr == null) {
             return null;
@@ -103,8 +95,9 @@ public class ZipUtils {
      * @return 返回压缩后的文本
      */
     public static final String zip(String str) {
-        if (str == null)
+        if (str == null) {
             return null;
+        }
         byte[] compressed;
         ByteArrayOutputStream out = null;
         ZipOutputStream zout = null;

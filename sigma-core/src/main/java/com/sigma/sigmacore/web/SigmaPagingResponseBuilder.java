@@ -24,12 +24,6 @@ public class SigmaPagingResponseBuilder {
         return this;
     }
 
-    /**
-     * 帶上消息
-     *
-     * @param message 消息
-     * @return
-     */
     public SigmaPagingResponseBuilder withMessage(String message) {
         if (sigmaPagingResponse.getHeader() == null) {
             sigmaPagingResponse.setHeader(new SigmaResponseHeader("", ""));

@@ -31,18 +31,13 @@ public class ValidationManager {
      *
      * @param validation  驗證
      * @param dataContext 上下問
-     * @return
+     * @return 验证管理器
      */
     public ValidationManager add(Validation validation, Object dataContext) {
         hashMap.put(validation, dataContext);
         return this;
     }
 
-    /**
-     * 驗證
-     *
-     * @return 驗證結果
-     */
     public ValidationSummary validate() {
 
         List<ValidationResult> results = Lists.newArrayList();
