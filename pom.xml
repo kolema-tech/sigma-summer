@@ -5,7 +5,7 @@
 
     <groupId>com.github.kolema-tech</groupId>
     <artifactId>sigma-summer</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>sigma-summer</name>

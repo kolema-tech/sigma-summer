@@ -7,11 +7,11 @@
     <parent>
         <artifactId>sigma-cloud</artifactId>
         <groupId>com.github.kolema-tech</groupId>
-        <version>1.0.7</version>
+        <version>1.0.8-SNAPSHOT</version>
     </parent>
 
     <artifactId>sigma-zuul-gateway</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 

@@ -7,11 +7,11 @@
     <parent>
         <artifactId>sigma-cloud</artifactId>
         <groupId>com.github.kolema-tech</groupId>
-        <version>1.0.7</version>
+        <version>1.0.8-SNAPSHOT</version>
     </parent>
 
     <artifactId>sigma-spring-boot-admin</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8-SNAPSHOT</version>
 
     <properties>
         <spring-boot-admin.version>2.0.2</spring-boot-admin.version>
