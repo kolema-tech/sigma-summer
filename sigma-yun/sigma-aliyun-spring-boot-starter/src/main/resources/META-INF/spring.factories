@@ -1,1 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.sigma.aliyunstarter.AliyunSmsStarterAutoConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.sigma.aliyunstarter.AliyunSmsStarterAutoConfigure,\
+  com.sigma.aliyunstarter.AliOssStarterAutoConfigure

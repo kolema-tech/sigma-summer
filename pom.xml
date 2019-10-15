@@ -123,7 +123,7 @@
         <module>sigma-generator</module>
         <!--<module>sigma-zookeeper</module>-->
         <module>sigma-test</module>
-        <module>sigma-security</module>
+        <module>sigma-security-spring-boot-starter</module>
         <module>sigma-web</module>
         <module>sigma-rabbit</module>
         <module>sigma-xxljob</module>

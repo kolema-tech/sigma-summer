@@ -51,7 +51,7 @@
 
         <dependency>
             <groupId>com.github.kolema-tech</groupId>
-            <artifactId>sigma-security</artifactId>
+            <artifactId>sigma-security-spring-boot-starter</artifactId>
             <version>1.0.8-SNAPSHOT</version>
         </dependency>
 
