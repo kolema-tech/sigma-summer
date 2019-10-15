@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class WXPay {
 
+    public static final String SUCCESS = "SUCCESS";
     private WXPayConfig config;
     private WXPayConstants.SignType signType;
     private boolean autoReport;
@@ -270,10 +271,10 @@ public class WXPay {
                 try {
                     lastResult = this.microPay(reqData, connectTimeoutMs, readTimeoutMs);
                     String returnCode = lastResult.get("return_code");
-                    if (returnCode.equals("SUCCESS")) {
+                    if (SUCCESS.equals(returnCode)) {
                         String resultCode = lastResult.get("result_code");
                         String errCode = lastResult.get("err_code");
-                        if (resultCode.equals("SUCCESS")) {
+                        if (SUCCESS.equals(resultCode)) {
                             break;
                         } else {
                             // 看错误码，若支付结果未知，则重试提交刷卡支付
