@@ -11,8 +11,8 @@ public interface PrintLog {
     /**
      * 打印日志
      *
-     * @param message
-     * @param detail
+     * @param message 消息
+     * @param detail 详细
      */
     void print(String message, String detail);
 }

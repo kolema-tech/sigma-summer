@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 /**
  * @author zen peng.
  * @version 1.0
- * @since < Hi 5.2
+ * @since 版本低于 Hi 5.2
  * date-time: 2018/6/4-12:14
  * desc: 時間轉換，用於HI 5.2版本以下
  **/

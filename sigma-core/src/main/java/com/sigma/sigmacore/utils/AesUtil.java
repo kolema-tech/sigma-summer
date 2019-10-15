@@ -9,14 +9,13 @@ import java.security.SecureRandom;
 
 /**
  * Aes加密工具类
- * <p>
+ *
  * sigma 里面的AesUtil Linux中会有javax.crypto.BadPaddingException: Given final block not properly padded问题
  * 1、如果不引入local_policy 跟 Us_export_policy 两个Jar 到JRE中，而为保险还是不引入
  * 2、此处采用 getSecureRandom 方法的实现
  *
  * @author ware zhang
  * @version 1.0.0
- * @date 2018/12/5 15:54
  */
 public class AesUtil {
 

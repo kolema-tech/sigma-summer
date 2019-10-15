@@ -28,7 +28,7 @@ public class SigmaResponseBuilder {
      * 帶上消息
      *
      * @param message 消息
-     * @return
+     * @return Builder
      */
     public SigmaResponseBuilder withMessage(String message) {
         if (sigmaResponse.getHeader() == null) {
@@ -44,7 +44,7 @@ public class SigmaResponseBuilder {
      * 帶上數據
      *
      * @param data 數據
-     * @return
+     * @return Builder
      */
     public SigmaResponseBuilder withData(Object data) {
 

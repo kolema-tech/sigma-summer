@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
  *
  * @author ware zhang
  * @version 1.0.0
- * @date 2018/10/30 17:17
+ * date 2018/10/30 17:17
  */
 public class RequestWrapper extends HttpServletRequestWrapper {
 
@@ -27,12 +27,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         body = readBytes(request.getReader(), "utf-8");
     }
 
-    /**
-     * 获取请求Body
-     *
-     * @param request
-     * @return
-     */
+
     public static String getBodyString(final ServletRequest request) {
 
 
@@ -73,12 +68,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         return sb.toString();
     }
 
-    /**
-     * Description: 复制输入流</br>
-     *
-     * @param inputStream
-     * @return</br>
-     */
+
     public static InputStream cloneInputStream(ServletInputStream inputStream) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
@@ -132,14 +122,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         };
     }
 
-    /**
-     * 通过BufferedReader和字符编码集转换成byte数组
-     *
-     * @param br
-     * @param encoding
-     * @return
-     * @throws IOException
-     */
+
     private byte[] readBytes(BufferedReader br, String encoding) throws IOException {
         String str, retStr = "";
         while ((str = br.readLine()) != null) {

@@ -15,7 +15,7 @@ import java.util.Locale;
  *
  * @author ware zhang
  * @version 1.0.0
- * @date 2018/11/7 10:48
+ * date 2018/11/7 10:48
  */
 public class I18nLocaleResolver implements LocaleResolver {
 

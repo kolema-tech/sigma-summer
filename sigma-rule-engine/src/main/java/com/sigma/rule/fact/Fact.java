@@ -59,13 +59,7 @@ public class Fact implements FactMessage {
         return match(simpleFact, null);
     }
 
-    /**
-     * 直接運行
-     *
-     * @param simpleFact 事實
-     * @return 返回
-     * @throws Exception
-     */
+
     public Boolean match(SimpleFact simpleFact, Consumer<String> factMessageConsumer) {
         if (!simpleFact.containsKey(name)) {
             throw new FactKeyNotFoundException(name);

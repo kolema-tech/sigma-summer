@@ -21,22 +21,14 @@ public class RuleEngine {
      */
     private Condition condition = null;
 
-    /**
-     * 添加規則
-     *
-     * @param rule
-     */
+
     public void addRule(String rule) throws IOException {
         checkNotNull(rule);
 
         condition = ConditionFacade.create(rule);
     }
 
-    /**
-     * 運行
-     *
-     * @param simpleFact
-     */
+
     public RuleResult run(SimpleFact simpleFact) {
 
         if (condition == null) {
@@ -63,11 +55,6 @@ public class RuleEngine {
         return ruleResult;
     }
 
-    /**
-     * 獲取平台的條件
-     *
-     * @return
-     */
     @JsonIgnore
     public SimpleFact getFlatCondition() {
         SimpleFact simpleFact = new SimpleFact();

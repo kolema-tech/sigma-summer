@@ -18,7 +18,7 @@ public interface BaseService<T> extends BaseMapper<T> {
     /**
      * 创建审核
      *
-     * @param entity
+     * @param entity 实体
      */
     default void createAudit(T entity) {
         if (entity != null && entity instanceof AuditEntity) {
@@ -32,7 +32,7 @@ public interface BaseService<T> extends BaseMapper<T> {
     /**
      * 更新審核
      *
-     * @param entity
+     * @param entity 实体
      */
     default void updateAudit(T entity) {
         if (entity != null && entity instanceof AuditEntity) {
@@ -44,7 +44,7 @@ public interface BaseService<T> extends BaseMapper<T> {
     }
 
     /**
-     * @param entity
+     * @param entity 实体
      */
     default void createAndUpdateAudit(T entity) {
         createAudit(entity);

@@ -53,9 +53,7 @@ public class SigmaRequestHeader {
      */
     private String token;
 
-    /**
-     * 站点
-     */
+
     @JsonIgnore
     public String getSite() {
         try {

@@ -11,8 +11,8 @@ public interface Validation<T> {
     /**
      * 執行驗證
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 验证结果
      */
     ValidationResult validate(T context);
 }

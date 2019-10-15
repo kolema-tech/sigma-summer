@@ -32,24 +32,12 @@ public class ThreadContextHolder {
         return PATH_DICT;
     }
 
-    /**
-     * 注册路径
-     *
-     * @param path
-     * @param classType
-     */
+
     public static void registerPath(String path, Class classType) {
         PATH_DICT.put(path, classType);
     }
 
-    /**
-     * 读取值
-     *
-     * @param key
-     * @param classType
-     * @param <T>
-     * @return
-     */
+
     public static <T> T getValue(String key, Class<T> classType) {
 
         Map<String, Object> map = TH_CONTEXT_HOLDER.get();
@@ -61,12 +49,7 @@ public class ThreadContextHolder {
         return castObjectToT(map.get(key), classType);
     }
 
-    /**
-     * 设置值
-     *
-     * @param key
-     * @param value
-     */
+
     public static void setValue(String key, Object value) {
 
         Map<String, Object> map = TH_CONTEXT_HOLDER.get();
@@ -78,13 +61,7 @@ public class ThreadContextHolder {
         map.put(key, value);
     }
 
-    /**
-     * 设置一个对象值
-     *
-     * @param key
-     * @param value
-     * @param beanClass
-     */
+
     public static void setValueMap(String key, Map value, Class<?> beanClass) {
 
         try {

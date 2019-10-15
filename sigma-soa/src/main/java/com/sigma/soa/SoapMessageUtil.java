@@ -21,15 +21,7 @@ import java.nio.charset.Charset;
 @Slf4j
 public class SoapMessageUtil {
 
-    /**
-     * SOAPMessage convert to XmlString
-     *
-     * @param soapMessage
-     * @return
-     * @throws TransformerException
-     * @throws SOAPException
-     * @throws IOException
-     */
+
     public static String soapMessageToXml(SOAPMessage soapMessage) {
 
         if (soapMessage == null) {
@@ -58,14 +50,7 @@ public class SoapMessageUtil {
         return null;
     }
 
-    /**
-     * XML convert to SOAPMessage Object
-     *
-     * @param xmlRequest
-     * @return
-     * @throws SOAPException
-     * @throws IOException
-     */
+
     public static SOAPMessage xmlToSoapMessage(String xmlRequest) {
 
         if (xmlRequest == null) {
@@ -89,12 +74,7 @@ public class SoapMessageUtil {
         return null;
     }
 
-    /**
-     * 生成xml 报文
-     *
-     * @param node
-     * @return
-     */
+
     public static String toSoapXml(Node node) {
 
         if (node == null) {

@@ -12,16 +12,12 @@ import static com.sigma.web.SigmaWebConstants.DEFAULT_PATH_PATTERN_2;
  *
  * @author ware zhang
  * @version 1.0.0
- * @date 2018/10/30 17:40
+ * date 2018/10/30 17:40
  */
 @Configuration
 public class ServletConfig {
 
-    /**
-     * 注册过滤器
-     *
-     * @return
-     */
+
     @Bean
     public FilterRegistrationBean registrationBean() {
         FilterRegistrationBean<RequestFilter> registrationBean = new FilterRegistrationBean<>();

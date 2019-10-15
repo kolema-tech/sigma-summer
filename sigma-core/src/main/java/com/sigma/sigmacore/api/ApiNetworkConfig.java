@@ -16,25 +16,21 @@ public @interface ApiNetworkConfig {
     /**
      * 读取超时时间
      *
-     * @return
+     * @return 读取超时时间
      */
     int readTimeout() default 2000;
 
     /**
      * 连接超时时间
      *
-     * @return
+     * @return 连接超时时间
      */
     int connectTimeout() default 1000;
 
-    /**
-     * 重試次數
-     */
+
     int retryTime() default 3;
 
-    /**
-     * 總的超時時間
-     */
+
     int totalTimeout() default 10000;
 
 }
