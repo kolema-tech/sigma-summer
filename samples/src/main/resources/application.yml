@@ -6,9 +6,15 @@ swagger:
   base-package: com.sigma.examples
   base-path: /api/**
   api-names:
-    -
-    - school
+    - samples
+  version: v2
 
 spring:
   application:
     name: samples
+
+aliyun:
+  sms:
+    access-key-id: NRcyUO
+    secret: wZ920z2Ss2zlsafZ
+    sign-name: 注册验证

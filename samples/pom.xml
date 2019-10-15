@@ -30,6 +30,13 @@
             <artifactId>sigma-azure</artifactId>
             <version>1.0.8-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.kolema-tech</groupId>
+            <artifactId>sigma-aliyun-spring-boot-starter</artifactId>
+            <version>1.0.8-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
