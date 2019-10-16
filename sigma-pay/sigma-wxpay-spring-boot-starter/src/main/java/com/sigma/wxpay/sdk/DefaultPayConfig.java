@@ -8,7 +8,7 @@ import java.io.InputStream;
  * date-time: 2019-10-
  * desc: 配置默认实现
  **/
-public class DefaultPayConfig extends WXPayConfig {
+public class DefaultPayConfig extends BasePayConfig {
 
     private String appId;
 
@@ -43,7 +43,7 @@ public class DefaultPayConfig extends WXPayConfig {
     }
 
     @Override
-    public PayDomain getWXPayDomain() {
+    public PayDomain getPayDomain() {
         return new DefaultPayDomain();
     }
 }

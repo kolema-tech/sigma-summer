@@ -36,15 +36,15 @@ public class PayUtil {
     /**
      * XML格式字符串转换为Map
      *
-     * @param strXML XML字符串
+     * @param xml XML字符串
      * @return XML数据转换后的Map
      * @throws Exception
      */
-    public static Map<String, String> xmlToMap(String strXML) throws Exception {
+    public static Map<String, String> xmlToMap(String xml) throws Exception {
         try {
             Map<String, String> data = new HashMap<String, String>(16);
             DocumentBuilder documentBuilder = PayXmlUtil.newDocumentBuilder();
-            InputStream stream = new ByteArrayInputStream(strXML.getBytes("UTF-8"));
+            InputStream stream = new ByteArrayInputStream(xml.getBytes("UTF-8"));
             org.w3c.dom.Document doc = documentBuilder.parse(stream);
             doc.getDocumentElement().normalize();
             NodeList nodeList = doc.getDocumentElement().getChildNodes();
@@ -62,7 +62,7 @@ public class PayUtil {
             }
             return data;
         } catch (Exception ex) {
-            log.warn("Invalid XML, can not convert to map. Error message: {}. XML content: {}", ex.getMessage(), strXML);
+            log.warn("Invalid XML, can not convert to map. Error message: {}. XML content: {}", ex.getMessage(), xml);
             throw ex;
         }
 
@@ -213,9 +213,9 @@ public class PayUtil {
         }
         sb.append("key=").append(key);
         if (SignType.MD5.equals(signType)) {
-            return MD5(sb.toString()).toUpperCase();
+            return md5(sb.toString()).toUpperCase();
         } else if (SignType.HMACSHA256.equals(signType)) {
-            return HMACSHA256(sb.toString(), key);
+            return hmacsha256(sb.toString(), key);
         } else {
             throw new Exception(String.format("Invalid sign_type: %s", signType));
         }
@@ -242,7 +242,7 @@ public class PayUtil {
      * @param data 待处理数据
      * @return MD5结果
      */
-    public static String MD5(String data) throws Exception {
+    public static String md5(String data) throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
         byte[] array = md.digest(data.getBytes("UTF-8"));
         StringBuilder sb = new StringBuilder();
@@ -260,11 +260,11 @@ public class PayUtil {
      * @return 加密结果
      * @throws Exception
      */
-    public static String HMACSHA256(String data, String key) throws Exception {
-        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(key.getBytes("UTF-8"), "HmacSHA256");
-        sha256_HMAC.init(secret_key);
-        byte[] array = sha256_HMAC.doFinal(data.getBytes("UTF-8"));
+    public static String hmacsha256(String data, String key) throws Exception {
+        Mac hmacSHA256 = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secretKey = new SecretKeySpec(key.getBytes("UTF-8"), "HmacSHA256");
+        hmacSHA256.init(secretKey);
+        byte[] array = hmacSHA256.doFinal(data.getBytes("UTF-8"));
         StringBuilder sb = new StringBuilder();
         for (byte item : array) {
             sb.append(Integer.toHexString((item & 0xFF) | 0x100).substring(1, 3));

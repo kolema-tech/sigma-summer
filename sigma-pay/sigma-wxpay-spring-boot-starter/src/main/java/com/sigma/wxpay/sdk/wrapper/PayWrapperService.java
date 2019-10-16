@@ -1,7 +1,7 @@
 package com.sigma.wxpay.sdk.wrapper;
 
-import com.sigma.wxpay.sdk.WXPay;
-import com.sigma.wxpay.sdk.WXPayConfig;
+import com.sigma.wxpay.sdk.BasePayConfig;
+import com.sigma.wxpay.sdk.Pay;
 import com.sigma.wxpay.sdk.request.QueryOrderRequest;
 import com.sigma.wxpay.sdk.request.UnifiedOrderRequest;
 import com.sigma.wxpay.sdk.response.QueryOrderResponse;
@@ -18,10 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PayWrapperService {
 
-    WXPayConfig wxPayConfig;
+    BasePayConfig basePayConfig;
 
-    public PayWrapperService(WXPayConfig wxPayConfig) {
-        this.wxPayConfig = wxPayConfig;
+    public PayWrapperService(BasePayConfig basePayConfig) {
+        this.basePayConfig = basePayConfig;
     }
 
     /**
@@ -32,7 +32,7 @@ public class PayWrapperService {
      * @throws Exception 异常
      */
     public UnifiedOrderResponse unifiedOrderRequest(UnifiedOrderRequest request) throws Exception {
-        var wxPay = new WXPay(wxPayConfig, false);
+        var wxPay = new Pay(basePayConfig, false);
         var result = wxPay.unifiedOrder(request.toMap());
         return new UnifiedOrderResponse(result);
     }
@@ -45,7 +45,7 @@ public class PayWrapperService {
      * @throws Exception 异常
      */
     public QueryOrderResponse queryOrderRequest(QueryOrderRequest request) throws Exception {
-        var wxPay = new WXPay(wxPayConfig, false);
+        var wxPay = new Pay(basePayConfig, false);
         var result = wxPay.orderQuery(request.toMap());
         return new QueryOrderResponse(result);
     }

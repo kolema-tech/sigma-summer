@@ -3,6 +3,9 @@ package com.sigma.samples;
 import com.aliyuncs.exceptions.ClientException;
 import com.sigma.aliyunstarter.AliOssService;
 import com.sigma.aliyunstarter.AliSmsService;
+import com.sigma.wxpay.sdk.request.QueryOrderRequest;
+import com.sigma.wxpay.sdk.request.UnifiedOrderRequest;
+import com.sigma.wxpay.sdk.wrapper.PayWrapperService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +37,35 @@ public class App {
     @Autowired
     AliOssService aliOssService;
 
+    @Autowired
+    PayWrapperService payWrapperService;
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
+
+    @ApiOperation(value = "统一下单")
+    @GetMapping("/api/pay/createOrder")
+    public Object createOrder(String orderId) throws Exception {
+
+        return payWrapperService.unifiedOrderRequest(
+                UnifiedOrderRequest.builder()
+                        .body("印花")
+                        .notifyUrl("http://kolematech.com/")
+                        .orderId(orderId)
+                        .spbillCreateIp("127.0.0.1")
+                        .totalFee(1)
+                        .tradeType("NATIVE").build());
+    }
+
+    @ApiOperation(value = "查询订单")
+    @GetMapping("/api/pay/queryOrder")
+    public Object queryOrder(String orderId) throws Exception {
+
+        return payWrapperService.queryOrderRequest(
+                QueryOrderRequest.builder().orderId(orderId).build());
+    }
+
 
     @ApiOperation(value = "get method")
     @GetMapping("/api/getFileUrl")

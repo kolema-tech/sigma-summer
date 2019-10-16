@@ -1,9 +1,8 @@
 package com.sigma.wxpay.sdk.test;
 
 import com.sigma.wxpay.sdk.DefaultPayConfig;
-import com.sigma.wxpay.sdk.WXPay;
+import com.sigma.wxpay.sdk.Pay;
 import com.sigma.wxpay.sdk.request.QueryOrderRequest;
-import com.sigma.wxpay.sdk.request.UnifiedOrderRequest;
 import lombok.experimental.var;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -34,26 +33,28 @@ public class TestMain {
 
         queryOrder();
 
-        DefaultPayConfig defaultPayConfig = new DefaultPayConfig("", "", "");
+        DefaultPayConfig defaultPayConfig = new DefaultPayConfig
+                ("", "", "");
 
-        WXPay wxPay = new WXPay(defaultPayConfig, false);
-
-        var map = UnifiedOrderRequest.builder()
-                .body("视频购买")
-                .notifyUrl("http://kolematech.com/")
-                .orderId("asdf2323423")
-                .spbillCreateIp("127.0.0.1")
-                .totalFee(1)
-                .tradeType("APP").build().toMap();
-        var result = wxPay.unifiedOrder(map);
-        System.out.println(result);
+//        Pay pay = new Pay(defaultPayConfig, false);
+//
+//        var map = UnifiedOrderRequest.builder()
+//                .body("印花")
+//                .notifyUrl("http://kolematech.com/")
+//                .orderId("pz9898989")
+//                .spbillCreateIp("127.0.0.1")
+//                .totalFee(1)
+//                .tradeType("NATIVE").build().toMap();
+//        var result = pay.unifiedOrder(map);
+//        System.out.println(result);
     }
 
     public static void queryOrder() throws Exception {
-        DefaultPayConfig defaultPayConfig = new DefaultPayConfig("", "", "");
+        DefaultPayConfig defaultPayConfig = new DefaultPayConfig
+                ("", "", "");
 
-        WXPay wxPay = new WXPay(defaultPayConfig);
-        var result = wxPay.orderQuery(QueryOrderRequest.builder().orderId("1101415943569715200").build().toMap());
+        Pay pay = new Pay(defaultPayConfig);
+        var result = pay.orderQuery(QueryOrderRequest.builder().orderId("pz9898989").build().toMap());
         System.out.println(result);
     }
 

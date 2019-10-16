@@ -2,6 +2,7 @@ package com.sigma.wxpay.autoconfigure;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author huston.peng
@@ -10,7 +11,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * desc: 配置
  **/
 @Data
-@ConfigurationProperties(value = "sigma.pay.wxpay")
+@Configuration
+@ConfigurationProperties(value = "sigmapay.wxpay")
 public class SigmaWxpayProperties {
 
     /**

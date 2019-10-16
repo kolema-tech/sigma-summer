@@ -24,3 +24,9 @@ aliyun:
     secret: OOOOOOOO
     bucket: pub-name
     end-point: oss-cn-hangzhou.aliyuncs.com
+
+sigmapay:
+  wxpay:
+    app-id: wx
+    merchant-id: 136381
+    app-key: Lm0qodcpPTN

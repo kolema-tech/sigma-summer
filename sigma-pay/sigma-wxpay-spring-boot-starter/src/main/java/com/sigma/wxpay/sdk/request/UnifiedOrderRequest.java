@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @author huston.peng
- * @version 1.0
+ * @version 1.0.8
  * date-time: 2019-10-
  * desc: 统一下单请求
  **/
@@ -20,16 +20,34 @@ import java.util.Map;
 @Builder
 public class UnifiedOrderRequest {
 
+    /**
+     * 描述
+     */
     private String body;
 
+    /**
+     * 订单号
+     */
     private String orderId;
 
+    /**
+     * 总金额
+     */
     private Integer totalFee;
 
+    /**
+     * 创建IP
+     */
     private String spbillCreateIp;
 
+    /**
+     * 通知地址
+     */
     private String notifyUrl;
 
+    /**
+     * 交易类型
+     */
     private String tradeType;
 
 

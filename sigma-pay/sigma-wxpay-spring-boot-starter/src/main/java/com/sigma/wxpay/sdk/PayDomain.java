@@ -28,7 +28,7 @@ public interface PayDomain {
      * @param config 配置
      * @return 域名
      */
-    DomainInfo getDomain(final WXPayConfig config);
+    DomainInfo getDomain(final BasePayConfig config);
 
     @ToString
     class DomainInfo {

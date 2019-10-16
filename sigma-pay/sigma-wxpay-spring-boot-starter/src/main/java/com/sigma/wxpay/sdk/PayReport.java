@@ -37,10 +37,10 @@ public class PayReport {
     private static final int DEFAULT_READ_TIMEOUT_MS = 8 * 1000;
     private volatile static PayReport INSTANCE;
     private LinkedBlockingQueue<String> reportMsgQueue = null;
-    private WXPayConfig config;
+    private BasePayConfig config;
     private ExecutorService executorService;
 
-    private PayReport(final WXPayConfig config) {
+    private PayReport(final BasePayConfig config) {
         this.config = config;
         reportMsgQueue = new LinkedBlockingQueue<String>(config.getReportQueueMaxSize());
 
@@ -97,7 +97,7 @@ public class PayReport {
      * @param config 配置
      * @return 上报服务
      */
-    public static PayReport getInstance(WXPayConfig config) {
+    public static PayReport getInstance(BasePayConfig config) {
         if (INSTANCE == null) {
             synchronized (PayReport.class) {
                 if (INSTANCE == null) {
@@ -214,7 +214,7 @@ public class PayReport {
                 sb.append(obj).append(separator);
             }
             try {
-                String sign = PayUtil.HMACSHA256(sb.toString(), key);
+                String sign = PayUtil.hmacsha256(sb.toString(), key);
                 sb.append(sign);
                 return sb.toString();
             } catch (Exception ex) {

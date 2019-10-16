@@ -2,7 +2,13 @@ package com.sigma.wxpay.sdk;
 
 import java.io.InputStream;
 
-public abstract class WXPayConfig {
+/**
+ * @author huston.peng
+ * @version 1.0.8
+ * date-time: 2019-10-
+ * desc:
+ **/
+public abstract class BasePayConfig {
 
     /**
      * 获取 App ID
@@ -58,7 +64,7 @@ public abstract class WXPayConfig {
      *
      * @return 值
      */
-    public abstract PayDomain getWXPayDomain();
+    public abstract PayDomain getPayDomain();
 
     /**
      * 是否自动上报。

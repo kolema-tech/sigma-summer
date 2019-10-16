@@ -17,7 +17,7 @@ public class DefaultPayDomain implements PayDomain {
     }
 
     @Override
-    public DomainInfo getDomain(WXPayConfig config) {
+    public DomainInfo getDomain(BasePayConfig config) {
         return new DomainInfo(DOMAIN_API, true);
     }
 }

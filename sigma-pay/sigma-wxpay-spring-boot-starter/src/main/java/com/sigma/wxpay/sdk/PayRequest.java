@@ -34,11 +34,11 @@ import static com.sigma.wxpay.sdk.PayConstants.USER_AGENT;
  * desc:
  **/
 @Slf4j
-public class WXPayRequest {
+public class PayRequest {
 
-    private WXPayConfig config;
+    private BasePayConfig config;
 
-    public WXPayRequest(WXPayConfig config) {
+    public PayRequest(BasePayConfig config) {
 
         this.config = config;
     }
@@ -47,9 +47,9 @@ public class WXPayRequest {
      * 请求，只请求一次，不做重试
      *
      * @param domain           域名
-     * @param urlSuffix
-     * @param uuid
-     * @param data
+     * @param urlSuffix        url后缀
+     * @param uuid             随机数
+     * @param data             请求体
      * @param connectTimeoutMs 连接超时
      * @param readTimeoutMs    读取超时
      * @param useCert          是否使用证书，针对退款、撤销等操作
@@ -58,6 +58,7 @@ public class WXPayRequest {
      */
     private String requestOnce(final String domain, String urlSuffix, String uuid, String data, int connectTimeoutMs,
                                int readTimeoutMs, boolean useCert) throws Exception {
+
         BasicHttpClientConnectionManager connManager;
         if (useCert) {
             // 证书
@@ -118,27 +119,29 @@ public class WXPayRequest {
 
         HttpResponse httpResponse = httpClient.execute(httpPost);
         HttpEntity httpEntity = httpResponse.getEntity();
-        return EntityUtils.toString(httpEntity, "UTF-8");
 
+        return EntityUtils.toString(httpEntity, "UTF-8");
     }
 
 
     private String request(String urlSuffix, String uuid, String data, int connectTimeoutMs, int readTimeoutMs,
                            boolean useCert, boolean autoReport) throws Exception {
+
         Exception exception = null;
         long elapsedTimeMillis = 0;
         long startTimestampMs = PayUtil.getCurrentTimestampMs();
         boolean firstHasDnsErr = false;
         boolean firstHasConnectTimeout = false;
         boolean firstHasReadTimeout = false;
-        PayDomain.DomainInfo domainInfo = config.getWXPayDomain().getDomain(config);
+        PayDomain.DomainInfo domainInfo = config.getPayDomain().getDomain(config);
         if (domainInfo == null) {
-            throw new Exception("WXPayConfig.getWXPayDomain().getDomain() is empty or null");
+            throw new Exception("PayConfig.getPayDomain().getDomain() is empty or null");
         }
         try {
             String result = requestOnce(domainInfo.domain, urlSuffix, uuid, data, connectTimeoutMs, readTimeoutMs, useCert);
+
             elapsedTimeMillis = PayUtil.getCurrentTimestampMs() - startTimestampMs;
-            config.getWXPayDomain().report(domainInfo.domain, elapsedTimeMillis, null);
+            config.getPayDomain().report(domainInfo.domain, elapsedTimeMillis, null);
             PayReport.getInstance(config).report(
                     uuid,
                     elapsedTimeMillis,
@@ -211,7 +214,7 @@ public class WXPayRequest {
                     firstHasConnectTimeout,
                     firstHasReadTimeout);
         }
-        config.getWXPayDomain().report(domainInfo.domain, elapsedTimeMillis, exception);
+        config.getPayDomain().report(domainInfo.domain, elapsedTimeMillis, exception);
         throw exception;
     }
 
@@ -231,12 +234,13 @@ public class WXPayRequest {
     /**
      * 可重试的，非双向认证的请求
      *
-     * @param urlSuffix
-     * @param uuid
-     * @param data
-     * @param connectTimeoutMs
-     * @param readTimeoutMs
-     * @return
+     * @param urlSuffix        url后缀
+     * @param uuid             随机数
+     * @param data             请求体
+     * @param connectTimeoutMs 连接超时时间
+     * @param readTimeoutMs    读取超时时间
+     * @param autoReport       是否自动上报
+     * @return 请求结果
      */
 
     public String requestWithoutCert(String urlSuffix, String uuid, String data, int connectTimeoutMs,

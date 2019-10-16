@@ -6,38 +6,38 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-public class WXPay {
+public class Pay {
 
     public static final String SUCCESS = "SUCCESS";
-    private WXPayConfig config;
+    private BasePayConfig config;
     private PayConstants.SignType signType;
     private boolean autoReport;
     private boolean useSandbox;
     private String notifyUrl;
-    private WXPayRequest wxPayRequest;
+    private PayRequest payRequest;
 
-    public WXPay(final WXPayConfig config) throws Exception {
+    public Pay(final BasePayConfig config) throws Exception {
         this(config, null, true, false);
     }
 
-    public WXPay(final WXPayConfig config, final boolean autoReport) throws Exception {
+    public Pay(final BasePayConfig config, final boolean autoReport) throws Exception {
         this(config, null, autoReport, false);
     }
 
 
-    public WXPay(final WXPayConfig config, final boolean autoReport, final boolean useSandbox) throws Exception {
+    public Pay(final BasePayConfig config, final boolean autoReport, final boolean useSandbox) throws Exception {
         this(config, null, autoReport, useSandbox);
     }
 
-    public WXPay(final WXPayConfig config, final String notifyUrl) throws Exception {
+    public Pay(final BasePayConfig config, final String notifyUrl) throws Exception {
         this(config, notifyUrl, true, false);
     }
 
-    public WXPay(final WXPayConfig config, final String notifyUrl, final boolean autoReport) throws Exception {
+    public Pay(final BasePayConfig config, final String notifyUrl, final boolean autoReport) throws Exception {
         this(config, notifyUrl, autoReport, false);
     }
 
-    public WXPay(final WXPayConfig config, final String notifyUrl, final boolean autoReport, final boolean useSandbox) throws Exception {
+    public Pay(final BasePayConfig config, final String notifyUrl, final boolean autoReport, final boolean useSandbox) throws Exception {
         this.config = config;
         this.notifyUrl = notifyUrl;
         this.autoReport = autoReport;
@@ -47,33 +47,7 @@ public class WXPay {
         } else {
             this.signType = PayConstants.SignType.HMACSHA256;
         }
-        this.wxPayRequest = new WXPayRequest(config);
-    }
-
-    private void checkWXPayConfig() throws Exception {
-        if (this.config == null) {
-            throw new Exception("config is null");
-        }
-        if (this.config.getAppId() == null || this.config.getAppId().trim().length() == 0) {
-            throw new Exception("appid in config is empty");
-        }
-        if (this.config.getMerchantId() == null || this.config.getMerchantId().trim().length() == 0) {
-            throw new Exception("appid in config is empty");
-        }
-        if (this.config.getCertStream() == null) {
-            throw new Exception("cert stream in config is empty");
-        }
-        if (this.config.getWXPayDomain() == null) {
-            throw new Exception("config.getWXPayDomain() is null");
-        }
-
-        if (this.config.getHttpConnectTimeoutMs() < 10) {
-            throw new Exception("http connect timeout is too small");
-        }
-        if (this.config.getHttpReadTimeoutMs() < 10) {
-            throw new Exception("http read timeout is too small");
-        }
-
+        this.payRequest = new PayRequest(config);
     }
 
     /**
@@ -149,10 +123,10 @@ public class WXPay {
      */
     public String requestWithoutCert(String urlSuffix, Map<String, String> reqData,
                                      int connectTimeoutMs, int readTimeoutMs) throws Exception {
-        String msgUUID = reqData.get("nonce_str");
+        String nonceStr = reqData.get("nonce_str");
         String reqBody = PayUtil.mapToXml(reqData);
 
-        return this.wxPayRequest.requestWithoutCert(urlSuffix, msgUUID, reqBody, connectTimeoutMs, readTimeoutMs, autoReport);
+        return this.payRequest.requestWithoutCert(urlSuffix, nonceStr, reqBody, connectTimeoutMs, readTimeoutMs, autoReport);
     }
 
 
@@ -168,10 +142,10 @@ public class WXPay {
      */
     public String requestWithCert(String urlSuffix, Map<String, String> reqData,
                                   int connectTimeoutMs, int readTimeoutMs) throws Exception {
-        String msgUUID = reqData.get("nonce_str");
+        String nonceStr = reqData.get("nonce_str");
         String reqBody = PayUtil.mapToXml(reqData);
 
-        String resp = this.wxPayRequest.requestWithCert(urlSuffix, msgUUID, reqBody, connectTimeoutMs, readTimeoutMs, this.autoReport);
+        String resp = this.payRequest.requestWithCert(urlSuffix, nonceStr, reqBody, connectTimeoutMs, readTimeoutMs, this.autoReport);
         return resp;
     }
 
@@ -183,11 +157,11 @@ public class WXPay {
      * @throws Exception
      */
     public Map<String, String> processResponseXml(String xmlStr) throws Exception {
-        String RETURN_CODE = "return_code";
+        String returnCode = "return_code";
         String return_code;
         Map<String, String> respData = PayUtil.xmlToMap(xmlStr);
-        if (respData.containsKey(RETURN_CODE)) {
-            return_code = respData.get(RETURN_CODE);
+        if (respData.containsKey(returnCode)) {
+            return_code = respData.get(returnCode);
         } else {
             throw new Exception(String.format("No `return_code` in XML: %s", xmlStr));
         }
@@ -683,4 +657,4 @@ public class WXPay {
     }
 
 
-} // end class
+}

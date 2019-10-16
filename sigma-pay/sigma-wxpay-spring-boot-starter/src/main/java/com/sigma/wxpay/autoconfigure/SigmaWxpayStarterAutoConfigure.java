@@ -5,6 +5,7 @@ import com.sigma.wxpay.sdk.wrapper.PayWrapperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author huston.peng
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Bean;
  * date-time: 2019-10-
  * desc:
  **/
+@Configuration
 @EnableConfigurationProperties(SigmaWxpayProperties.class)
 public class SigmaWxpayStarterAutoConfigure {
 
