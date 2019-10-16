@@ -24,9 +24,11 @@ import java.util.concurrent.ThreadFactory;
  */
 public class WXPayReport {
 
+    /**
+     * 上报地址
+     */
     private static final String REPORT_URL = "http://report.mch.weixin.qq.com/wxpay/report/default";
     private static final int DEFAULT_CONNECT_TIMEOUT_MS = 6 * 1000;
-    // private static final String REPORT_URL = "http://127.0.0.1:5000/test";
     private static final int DEFAULT_READ_TIMEOUT_MS = 8 * 1000;
     private volatile static WXPayReport INSTANCE;
     private LinkedBlockingQueue<String> reportMsgQueue = null;

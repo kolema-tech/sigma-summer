@@ -57,7 +57,7 @@ public class TestMain {
         DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig();
 
         WXPay wxPay = new WXPay(defaultWxPayConfig);
-        var result = wxPay.orderQuery(QueryOrderRequest.builder().out_trade_no("1101415943569715200").build().toMap());
+        var result = wxPay.orderQuery(QueryOrderRequest.builder().orderId("1101415943569715200").build().toMap());
         System.out.println(result);
     }
 
@@ -66,7 +66,7 @@ public class TestMain {
         DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig();
 
         String nonce_str = WXPayUtil.generateNonceStr();//生成随机字符
-        Map<String, String> param = new HashMap<String, String>();
+        Map<String, String> param = new HashMap<String, String>(16);
         param.put("mch_id", defaultWxPayConfig.getMchID());//需要真实商户号
         param.put("nonce_str", nonce_str);//随机字符
         param.put("total_fee", "100");
@@ -76,7 +76,7 @@ public class TestMain {
         String url = "https://api.mch.weixin.qq.com/sandboxnew/pay/getsignkey";//沙箱密钥获取api
         String SignKey = post(url, xml);//
         System.out.println("signkey+" + SignKey);
-        Map<String, String> param1 = new HashMap<String, String>();
+        Map<String, String> param1 = new HashMap<String, String>(16);
         param1 = WXPayUtil.xmlToMap(SignKey);
         String key = param1.get("sandbox_signkey");
         return key;

@@ -32,7 +32,10 @@ public class WXPayConstants {
     public static final String REPORT_URL_SUFFIX = "/payitil/report";
     public static final String SHORTURL_URL_SUFFIX = "/tools/shorturl";
     public static final String AUTHCODETOOPENID_URL_SUFFIX = "/tools/authcodetoopenid";
-    // sandbox
+
+    /**
+     * sandbox
+     */
     public static final String SANDBOX_MICROPAY_URL_SUFFIX = "/sandboxnew/pay/micropay";
     public static final String SANDBOX_UNIFIEDORDER_URL_SUFFIX = "/sandboxnew/pay/unifiedorder";
     public static final String SANDBOX_ORDERQUERY_URL_SUFFIX = "/sandboxnew/pay/orderquery";
@@ -45,8 +48,19 @@ public class WXPayConstants {
     public static final String SANDBOX_SHORTURL_URL_SUFFIX = "/sandboxnew/tools/shorturl";
     public static final String SANDBOX_AUTHCODETOOPENID_URL_SUFFIX = "/sandboxnew/tools/authcodetoopenid";
 
+    /**
+     * 签名类别
+     */
     public enum SignType {
-        MD5, HMACSHA256
+        /**
+         * MD5
+         */
+        MD5,
+
+        /**
+         * SHA 256
+         */
+        HMACSHA256
     }
 
 }

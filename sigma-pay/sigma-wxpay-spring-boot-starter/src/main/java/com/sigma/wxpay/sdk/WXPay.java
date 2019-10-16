@@ -40,7 +40,7 @@ public class WXPay {
         this.autoReport = autoReport;
         this.useSandbox = useSandbox;
         if (useSandbox) {
-            this.signType = WXPayConstants.SignType.MD5; // 沙箱环境
+            this.signType = WXPayConstants.SignType.MD5;
         } else {
             this.signType = WXPayConstants.SignType.HMACSHA256;
         }
@@ -278,7 +278,7 @@ public class WXPay {
                             break;
                         } else {
                             // 看错误码，若支付结果未知，则重试提交刷卡支付
-                            if (errCode.equals("SYSTEMERROR") || errCode.equals("BANKERROR") || errCode.equals("USERPAYING")) {
+                            if ("SYSTEMERROR".equals(errCode) || "BANKERROR".equals(errCode) || "USERPAYING".equals(errCode)) {
                                 remainingTimeMs = remainingTimeMs - (int) (WXPayUtil.getCurrentTimestampMs() - startTimestampMs);
                                 if (remainingTimeMs <= 100) {
                                     break;
@@ -569,7 +569,7 @@ public class WXPay {
             ret = WXPayUtil.xmlToMap(respStr);
         } else {
             // 正常返回csv数据
-            ret = new HashMap<String, String>();
+            ret = new HashMap<String, String>(8);
             ret.put("return_code", WXPayConstants.SUCCESS);
             ret.put("return_msg", "ok");
             ret.put("data", respStr);

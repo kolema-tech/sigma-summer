@@ -8,9 +8,13 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
- * 统一下单请求
- */
+ * @author huston.peng
+ * @version 1.0
+ * date-time: 2019-10-
+ * desc: 统一下单请求
+ **/
 @Getter
 @Setter
 @Builder
@@ -30,7 +34,7 @@ public class UnifiedOrderRequest {
 
 
     public Map<String, String> toMap() {
-        Map<String, String> result = new HashMap<>();
+        Map<String, String> result = new HashMap<>(16);
 
         result.put("body", body);
         result.put("out_trade_no", out_trade_no);
