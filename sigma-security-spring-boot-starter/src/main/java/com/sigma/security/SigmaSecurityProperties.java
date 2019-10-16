@@ -14,5 +14,9 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "sigma.security")
 @Data
 public class SigmaSecurityProperties {
-    private Boolean enableOpsCors;
+
+    /**
+     * 是否启用
+     */
+    private Boolean enableOpsCors = false;
 }

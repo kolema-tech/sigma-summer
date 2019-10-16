@@ -109,7 +109,6 @@
 
     <modules>
         <module>sigma-core</module>
-        <module>sigma-business</module>
         <module>sigma-cloud</module>
         <!--<module>sigma-tran</module>-->
         <!--<module>sigma-feign</module>-->

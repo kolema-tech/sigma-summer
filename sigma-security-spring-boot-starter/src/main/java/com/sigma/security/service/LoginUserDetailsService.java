@@ -16,7 +16,7 @@ public interface LoginUserDetailsService {
      * @param username 用户名
      * @param password 密码
      * @return UserDetails
-     * @throws UsernameNotFoundException
+     * @throws UsernameNotFoundException 用户名异常
      */
     UserDetails loadUserByUsername(String username, String password) throws UsernameNotFoundException;
 }
