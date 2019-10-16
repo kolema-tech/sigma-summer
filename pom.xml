@@ -110,27 +110,16 @@
     <modules>
         <module>sigma-core</module>
         <module>sigma-cloud</module>
-        <!--<module>sigma-tran</module>-->
-        <!--<module>sigma-feign</module>-->
-        <!--<module>sigma-scheduler</module>-->
         <module>sigma-rule-engine</module>
-        <!--<module>sigma-redis</module>-->
-        <!--<module>sigma-sample</module>-->
         <module>sigma-data</module>
         <module>sigma-logging</module>
-        <!--<module>sigma-statemachine</module>-->
-        <module>sigma-generator</module>
-        <!--<module>sigma-zookeeper</module>-->
-        <module>sigma-test</module>
         <module>sigma-security-spring-boot-starter</module>
         <module>sigma-web</module>
         <module>sigma-rabbit</module>
         <module>sigma-xxljob</module>
         <module>sigma-soa</module>
-        <module>sigma-data-mybatis</module>
         <module>sigma-data-redis</module>
         <module>sigma-pay</module>
-        <!--<module>sigma-cloud</module>-->
         <module>sigma-yun</module>
         <module>sigma-sdk</module>
 

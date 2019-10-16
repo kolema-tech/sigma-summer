@@ -1,9 +1,0 @@
-sigma:
-  dist:
-    zookeeper:
-      url: 192.168.2.211:2181
-
-server:
-  port: 1778
-
-master: true
