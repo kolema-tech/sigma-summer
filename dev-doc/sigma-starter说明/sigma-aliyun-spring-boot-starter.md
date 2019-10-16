@@ -10,3 +10,13 @@ aliyun:
     sign-name: 注册验证
 ```
 
+# OSS
+
+```yaml
+aliyun:
+  oss:
+    access-key-id: XXXX
+    secret: OOOOOOOO
+    bucket: pub-name
+    end-point: oss-cn-hangzhou.aliyuncs.com
+```

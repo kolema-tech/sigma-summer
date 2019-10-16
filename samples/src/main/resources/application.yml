@@ -1,13 +1,14 @@
 swagger:
   enable: true
-  client-id:
-  client-secret:
-  access-token-uri: http://localhost:18889/auth/oauth/token
+  client-id: sdf
+  client-secret: sdfsd
+  access-token-uri: http://localhost:18888/oauth/token
   base-package: com.sigma.examples
   base-path: /api/**
   api-names:
+    -
     - samples
-  version: v2
+#  version: v2
 
 spring:
   application:
@@ -18,3 +19,8 @@ aliyun:
     access-key-id: NRcyUO
     secret: wZ920z2Ss2zlsafZ
     sign-name: 注册验证
+  oss:
+    access-key-id: XXXX
+    secret: OOOOOOOO
+    bucket: pub-name
+    end-point: oss-cn-hangzhou.aliyuncs.com

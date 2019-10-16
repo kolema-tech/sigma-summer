@@ -1,15 +1,20 @@
 package com.sigma.aliyunstarter;
 
+import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import com.aliyun.oss.model.Bucket;
+import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.var;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.InputStream;
+import java.net.URL;
+import java.text.MessageFormat;
+import java.util.Date;
 
 /**
  * @author huston.peng
@@ -17,6 +22,7 @@ import java.io.InputStream;
  * date-time: 2019-10-
  * desc:
  **/
+@Slf4j
 public class AliOssService {
 
     @Getter
@@ -27,31 +33,53 @@ public class AliOssService {
         this.ossProperties = aliOssProperties;
     }
 
-    public String getFileName(String fileName) {
-        return "https://" + ossProperties.getBucket() + "." + ossProperties.getEndPoint() + "/" + fileName;
+    /**
+     * 获取文件全地址
+     *
+     * @param key 文件名
+     * @return 文件Url.
+     */
+    public String getOssUrl(String key) {
+        return MessageFormat.format("https://{0}.{1}/{2}", ossProperties.getBucket(), ossProperties.getEndPoint(), key);
     }
 
-    private Bucket createBucket(String bucketName) {
-        OSS client = getClient();
-        Bucket bucket = client.createBucket(bucketName);
-        client.shutdown();
-        return bucket;
+    /**
+     * 获取文件地址
+     *
+     * @param key     文件名
+     * @param seconds 过期的秒数
+     * @return URL连接
+     */
+    public URL getOssUrl(String key, Integer seconds) {
+        Date expiration = new Date(System.currentTimeMillis() + seconds * 1000);
+        return getClient().generatePresignedUrl(ossProperties.getBucket(), key, expiration);
     }
 
     /**
      * 上传文件
      *
-     * @param fileName    文件名
+     * @param key         文件名
      * @param inputStream 文件流
      */
-    public PutObjectResult upload(String fileName, InputStream inputStream) {
+    public PutObjectResult upload(String key, InputStream inputStream) {
+
         OSS client = getClient();
-        var putObjectRequest = new PutObjectRequest(ossProperties.getBucket(), fileName, inputStream);
-        var putObjectResult = client.putObject(putObjectRequest);
 
-        client.shutdown();
+        try {
 
-        return putObjectResult;
+            var putObjectRequest = new PutObjectRequest(ossProperties.getBucket(), key, inputStream);
+
+            return client.putObject(putObjectRequest);
+
+        } catch (OSSException oe) {
+            log.error("Caught an OSSException", oe);
+        } catch (ClientException ce) {
+            log.error("Caught an ClientException", ce);
+        } finally {
+            client.shutdown();
+        }
+
+        return null;
     }
 
     public OSS getClient() {
