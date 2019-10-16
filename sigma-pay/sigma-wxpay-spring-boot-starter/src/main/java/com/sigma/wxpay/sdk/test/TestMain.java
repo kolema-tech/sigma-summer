@@ -34,7 +34,7 @@ public class TestMain {
 
         queryOrder();
 
-        DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig();
+        DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig("", "", "");
 
         WXPay wxPay = new WXPay(defaultWxPayConfig, false);
 
@@ -50,7 +50,7 @@ public class TestMain {
     }
 
     public static void queryOrder() throws Exception {
-        DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig();
+        DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig("", "", "");
 
         WXPay wxPay = new WXPay(defaultWxPayConfig);
         var result = wxPay.orderQuery(QueryOrderRequest.builder().orderId("1101415943569715200").build().toMap());

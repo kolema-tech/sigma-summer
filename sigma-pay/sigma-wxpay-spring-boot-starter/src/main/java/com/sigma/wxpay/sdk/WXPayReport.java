@@ -137,7 +137,7 @@ public class WXPayReport {
 
         StringEntity postEntity = new StringEntity(data, "UTF-8");
         httpPost.addHeader("Content-Type", "text/xml");
-        httpPost.addHeader("User-Agent", WXPayConstants.USER_AGENT);
+        httpPost.addHeader("User-Agent", PayConstants.USER_AGENT);
         httpPost.setEntity(postEntity);
 
         HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -187,7 +187,7 @@ public class WXPayReport {
 
         // 基本信息
         private String version = "v1";
-        private String sdk = WXPayConstants.WXPAYSDK_VERSION;
+        private String sdk = PayConstants.WXPAYSDK_VERSION;
         private String uuid;  // 交易的标识
         private long timestamp;   // 上报时的时间戳，单位秒
         private long elapsedTimeMillis; // 耗时，单位 毫秒

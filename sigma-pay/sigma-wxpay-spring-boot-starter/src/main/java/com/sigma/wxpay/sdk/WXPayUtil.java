@@ -1,6 +1,6 @@
 package com.sigma.wxpay.sdk;
 
-import com.sigma.wxpay.sdk.WXPayConstants.SignType;
+import com.sigma.wxpay.sdk.PayConstants.SignType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
@@ -122,7 +122,7 @@ public class WXPayUtil {
      */
     public static String generateSignedXml(final Map<String, String> data, String key, SignType signType) throws Exception {
         String sign = generateSignature(data, key, signType);
-        data.put(WXPayConstants.FIELD_SIGN, sign);
+        data.put(PayConstants.FIELD_SIGN, sign);
         return mapToXml(data);
     }
 
@@ -137,10 +137,10 @@ public class WXPayUtil {
      */
     public static boolean isSignatureValid(String xmlStr, String key) throws Exception {
         Map<String, String> data = xmlToMap(xmlStr);
-        if (!data.containsKey(WXPayConstants.FIELD_SIGN)) {
+        if (!data.containsKey(PayConstants.FIELD_SIGN)) {
             return false;
         }
-        String sign = data.get(WXPayConstants.FIELD_SIGN);
+        String sign = data.get(PayConstants.FIELD_SIGN);
         return generateSignature(data, key).equals(sign);
     }
 
@@ -166,10 +166,10 @@ public class WXPayUtil {
      * @throws Exception
      */
     public static boolean isSignatureValid(Map<String, String> data, String key, SignType signType) throws Exception {
-        if (!data.containsKey(WXPayConstants.FIELD_SIGN)) {
+        if (!data.containsKey(PayConstants.FIELD_SIGN)) {
             return false;
         }
-        String sign = data.get(WXPayConstants.FIELD_SIGN);
+        String sign = data.get(PayConstants.FIELD_SIGN);
         return generateSignature(data, key, signType).equals(sign);
     }
 
@@ -198,7 +198,7 @@ public class WXPayUtil {
         Arrays.sort(keyArray);
         StringBuilder sb = new StringBuilder();
         for (String k : keyArray) {
-            if (k.equals(WXPayConstants.FIELD_SIGN)) {
+            if (k.equals(PayConstants.FIELD_SIGN)) {
                 continue;
             }
             // 参数值为空，则不参与签名

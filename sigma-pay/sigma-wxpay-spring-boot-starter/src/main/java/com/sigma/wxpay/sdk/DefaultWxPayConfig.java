@@ -2,6 +2,12 @@ package com.sigma.wxpay.sdk;
 
 import java.io.InputStream;
 
+/**
+ * @author huston.peng
+ * @version 1.0。8
+ * date-time: 2019-10-
+ * desc: 配置默认实现
+ **/
 public class DefaultWxPayConfig extends WXPayConfig {
 
     private String appId;
@@ -9,6 +15,12 @@ public class DefaultWxPayConfig extends WXPayConfig {
     private String merchantId;
 
     private String appKey;
+
+    public DefaultWxPayConfig(String appId, String merchantId, String appKey) {
+        this.appId = appId;
+        this.merchantId = merchantId;
+        this.appKey = appKey;
+    }
 
     @Override
     public String getAppId() {

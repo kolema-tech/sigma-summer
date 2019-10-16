@@ -24,7 +24,7 @@ import java.net.UnknownHostException;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 
-import static com.sigma.wxpay.sdk.WXPayConstants.USER_AGENT;
+import static com.sigma.wxpay.sdk.PayConstants.USER_AGENT;
 
 /**
  * @author huston.peng

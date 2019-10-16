@@ -13,9 +13,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(value = "sigma.pay.wxpay")
 public class SigmaWxpayProperties {
 
+    /**
+     * AppId
+     */
     private String appId;
 
+    /**
+     * 商户ID
+     */
     private String merchantId;
 
+    /**
+     * Key
+     */
     private String appKey;
 }

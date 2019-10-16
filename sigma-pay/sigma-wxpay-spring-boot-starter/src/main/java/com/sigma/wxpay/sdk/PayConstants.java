@@ -3,9 +3,12 @@ package com.sigma.wxpay.sdk;
 import org.apache.http.client.HttpClient;
 
 /**
- * 常量
- */
-public class WXPayConstants {
+ * @author huston.peng
+ * @version 1.0.8
+ * date-time: 2019-10-
+ * desc: 支付常量定义
+ **/
+public class PayConstants {
 
     public static final String DOMAIN_API = "api.mch.weixin.qq.com";
     public static final String DOMAIN_API2 = "api2.mch.weixin.qq.com";
