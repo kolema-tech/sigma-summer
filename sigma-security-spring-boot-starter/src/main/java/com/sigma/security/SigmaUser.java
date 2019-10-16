@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -97,5 +98,13 @@ public class SigmaUser extends User {
     @JsonIgnore
     public static LinkedHashMap getPrincipal() {
         return (LinkedHashMap) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    public synchronized void addProperty(String name, Object value) {
+        if (userMap == null) {
+            userMap = new HashMap<>(16);
+        }
+
+        userMap.put(name, value);
     }
 }

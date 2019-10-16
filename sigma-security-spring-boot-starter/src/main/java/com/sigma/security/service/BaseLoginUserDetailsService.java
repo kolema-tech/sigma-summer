@@ -1,9 +1,9 @@
 package com.sigma.security.service;
 
-import com.sigma.business.members.MemberEntity;
-import com.sigma.business.members.PermissionEntity;
-import com.sigma.business.members.RoleEntity;
 import com.sigma.security.SigmaUser;
+import com.sigma.security.entity.MemberEntity;
+import com.sigma.security.entity.PermissionEntity;
+import com.sigma.security.entity.RoleEntity;
 import lombok.experimental.var;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +24,6 @@ import java.util.Set;
  **/
 @Slf4j
 public abstract class BaseLoginUserDetailsService implements LoginUserDetailsService {
-
 
     /**
      * 进行登录验证
