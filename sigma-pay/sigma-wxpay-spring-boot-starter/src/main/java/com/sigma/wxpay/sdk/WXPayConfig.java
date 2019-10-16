@@ -58,7 +58,7 @@ public abstract class WXPayConfig {
      *
      * @return 值
      */
-    public abstract IWXPayDomain getWXPayDomain();
+    public abstract PayDomain getWXPayDomain();
 
     /**
      * 是否自动上报。

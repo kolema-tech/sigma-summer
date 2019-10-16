@@ -1,8 +1,7 @@
 package com.sigma.wxpay.sdk;
 
 import com.sigma.wxpay.sdk.PayConstants.SignType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -21,8 +20,14 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.*;
 
-
-public class WXPayUtil {
+/**
+ * @author huston.peng
+ * @version 1.0.8
+ * date-time: 2019-10-
+ * desc: 支付工具类
+ **/
+@Slf4j
+public class PayUtil {
 
     private static final String SYMBOLS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -38,7 +43,7 @@ public class WXPayUtil {
     public static Map<String, String> xmlToMap(String strXML) throws Exception {
         try {
             Map<String, String> data = new HashMap<String, String>(16);
-            DocumentBuilder documentBuilder = WXPayXmlUtil.newDocumentBuilder();
+            DocumentBuilder documentBuilder = PayXmlUtil.newDocumentBuilder();
             InputStream stream = new ByteArrayInputStream(strXML.getBytes("UTF-8"));
             org.w3c.dom.Document doc = documentBuilder.parse(stream);
             doc.getDocumentElement().normalize();
@@ -57,7 +62,7 @@ public class WXPayUtil {
             }
             return data;
         } catch (Exception ex) {
-            WXPayUtil.getLogger().warn("Invalid XML, can not convert to map. Error message: {}. XML content: {}", ex.getMessage(), strXML);
+            log.warn("Invalid XML, can not convert to map. Error message: {}. XML content: {}", ex.getMessage(), strXML);
             throw ex;
         }
 
@@ -71,7 +76,7 @@ public class WXPayUtil {
      * @throws Exception
      */
     public static String mapToXml(Map<String, String> data) throws Exception {
-        org.w3c.dom.Document document = WXPayXmlUtil.newDocument();
+        org.w3c.dom.Document document = PayXmlUtil.newDocument();
         org.w3c.dom.Element root = document.createElement("xml");
         document.appendChild(root);
         for (String key : data.keySet()) {
@@ -92,7 +97,7 @@ public class WXPayUtil {
         StringWriter writer = new StringWriter();
         StreamResult result = new StreamResult(writer);
         transformer.transform(source, result);
-        String output = writer.getBuffer().toString(); //.replaceAll("\n|\r", "");
+        String output = writer.getBuffer().toString();
         try {
             writer.close();
         } catch (Exception ex) {
@@ -265,16 +270,6 @@ public class WXPayUtil {
             sb.append(Integer.toHexString((item & 0xFF) | 0x100).substring(1, 3));
         }
         return sb.toString().toUpperCase();
-    }
-
-    /**
-     * 日志
-     *
-     * @return
-     */
-    public static Logger getLogger() {
-        Logger logger = LoggerFactory.getLogger("wxpay java sdk");
-        return logger;
     }
 
     /**

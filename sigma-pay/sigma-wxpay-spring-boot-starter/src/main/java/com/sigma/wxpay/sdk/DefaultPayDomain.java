@@ -11,7 +11,7 @@ import static com.sigma.wxpay.sdk.PayConstants.DOMAIN_API;
  * desc:
  **/
 @Slf4j
-public class DefaultWXPayDomain implements IWXPayDomain {
+public class DefaultPayDomain implements PayDomain {
     @Override
     public void report(String domain, long elapsedTimeMillis, Exception ex) {
     }

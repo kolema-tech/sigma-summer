@@ -8,9 +8,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
- * 2018/7/3
- */
-public final class WXPayXmlUtil {
+ * @author huston.peng
+ * @version 1.0
+ * date-time: 2019-10-
+ * desc:
+ **/
+
+public final class PayXmlUtil {
+
     public static DocumentBuilder newDocumentBuilder() throws ParserConfigurationException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);

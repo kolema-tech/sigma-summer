@@ -1,8 +1,11 @@
 package com.sigma.wxpay.sdk;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class WXPay {
 
     public static final String SUCCESS = "SUCCESS";
@@ -84,13 +87,13 @@ public class WXPay {
     public Map<String, String> fillRequestData(Map<String, String> reqData) throws Exception {
         reqData.put("appid", config.getAppId());
         reqData.put("mch_id", config.getMerchantId());
-        reqData.put("nonce_str", WXPayUtil.generateNonceStr());
+        reqData.put("nonce_str", PayUtil.generateNonceStr());
         if (PayConstants.SignType.MD5.equals(this.signType)) {
             reqData.put("sign_type", PayConstants.MD5);
         } else if (PayConstants.SignType.HMACSHA256.equals(this.signType)) {
             reqData.put("sign_type", PayConstants.HMACSHA256);
         }
-        reqData.put("sign", WXPayUtil.generateSignature(reqData, config.getKey(), this.signType));
+        reqData.put("sign", PayUtil.generateSignature(reqData, config.getKey(), this.signType));
         return reqData;
     }
 
@@ -103,7 +106,7 @@ public class WXPay {
      */
     public boolean isResponseSignatureValid(Map<String, String> reqData) throws Exception {
         // 返回数据的签名方式和请求中给定的签名方式是一致的
-        return WXPayUtil.isSignatureValid(reqData, this.config.getKey(), this.signType);
+        return PayUtil.isSignatureValid(reqData, this.config.getKey(), this.signType);
     }
 
     /**
@@ -130,7 +133,7 @@ public class WXPay {
                 throw new Exception(String.format("Unsupported sign_type: %s", signTypeInData));
             }
         }
-        return WXPayUtil.isSignatureValid(reqData, this.config.getKey(), signType);
+        return PayUtil.isSignatureValid(reqData, this.config.getKey(), signType);
     }
 
 
@@ -147,7 +150,7 @@ public class WXPay {
     public String requestWithoutCert(String urlSuffix, Map<String, String> reqData,
                                      int connectTimeoutMs, int readTimeoutMs) throws Exception {
         String msgUUID = reqData.get("nonce_str");
-        String reqBody = WXPayUtil.mapToXml(reqData);
+        String reqBody = PayUtil.mapToXml(reqData);
 
         return this.wxPayRequest.requestWithoutCert(urlSuffix, msgUUID, reqBody, connectTimeoutMs, readTimeoutMs, autoReport);
     }
@@ -166,7 +169,7 @@ public class WXPay {
     public String requestWithCert(String urlSuffix, Map<String, String> reqData,
                                   int connectTimeoutMs, int readTimeoutMs) throws Exception {
         String msgUUID = reqData.get("nonce_str");
-        String reqBody = WXPayUtil.mapToXml(reqData);
+        String reqBody = PayUtil.mapToXml(reqData);
 
         String resp = this.wxPayRequest.requestWithCert(urlSuffix, msgUUID, reqBody, connectTimeoutMs, readTimeoutMs, this.autoReport);
         return resp;
@@ -182,7 +185,7 @@ public class WXPay {
     public Map<String, String> processResponseXml(String xmlStr) throws Exception {
         String RETURN_CODE = "return_code";
         String return_code;
-        Map<String, String> respData = WXPayUtil.xmlToMap(xmlStr);
+        Map<String, String> respData = PayUtil.xmlToMap(xmlStr);
         if (respData.containsKey(RETURN_CODE)) {
             return_code = respData.get(RETURN_CODE);
         } else {
@@ -264,7 +267,7 @@ public class WXPay {
         Exception lastException = null;
 
         while (true) {
-            startTimestampMs = WXPayUtil.getCurrentTimestampMs();
+            startTimestampMs = PayUtil.getCurrentTimestampMs();
             int readTimeoutMs = remainingTimeMs - connectTimeoutMs;
             if (readTimeoutMs > 1000) {
                 try {
@@ -278,11 +281,11 @@ public class WXPay {
                         } else {
                             // 看错误码，若支付结果未知，则重试提交刷卡支付
                             if ("SYSTEMERROR".equals(errCode) || "BANKERROR".equals(errCode) || "USERPAYING".equals(errCode)) {
-                                remainingTimeMs = remainingTimeMs - (int) (WXPayUtil.getCurrentTimestampMs() - startTimestampMs);
+                                remainingTimeMs = remainingTimeMs - (int) (PayUtil.getCurrentTimestampMs() - startTimestampMs);
                                 if (remainingTimeMs <= 100) {
                                     break;
                                 } else {
-                                    WXPayUtil.getLogger().info("microPayWithPos: try micropay again");
+                                    log.info("microPayWithPos: try micropay again");
                                     if (remainingTimeMs > 5 * 1000) {
                                         Thread.sleep(5 * 1000);
                                     } else {
@@ -565,7 +568,7 @@ public class WXPay {
         Map<String, String> ret;
         // 出现错误，返回XML数据
         if (respStr.indexOf("<") == 0) {
-            ret = WXPayUtil.xmlToMap(respStr);
+            ret = PayUtil.xmlToMap(respStr);
         } else {
             // 正常返回csv数据
             ret = new HashMap<String, String>(8);
@@ -608,7 +611,7 @@ public class WXPay {
             url = PayConstants.REPORT_URL_SUFFIX;
         }
         String respXml = this.requestWithoutCert(url, this.fillRequestData(reqData), connectTimeoutMs, readTimeoutMs);
-        return WXPayUtil.xmlToMap(respXml);
+        return PayUtil.xmlToMap(respXml);
     }
 
 

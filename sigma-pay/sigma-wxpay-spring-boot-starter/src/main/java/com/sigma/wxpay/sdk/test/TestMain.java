@@ -1,6 +1,6 @@
 package com.sigma.wxpay.sdk.test;
 
-import com.sigma.wxpay.sdk.DefaultWxPayConfig;
+import com.sigma.wxpay.sdk.DefaultPayConfig;
 import com.sigma.wxpay.sdk.WXPay;
 import com.sigma.wxpay.sdk.request.QueryOrderRequest;
 import com.sigma.wxpay.sdk.request.UnifiedOrderRequest;
@@ -34,9 +34,9 @@ public class TestMain {
 
         queryOrder();
 
-        DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig("", "", "");
+        DefaultPayConfig defaultPayConfig = new DefaultPayConfig("", "", "");
 
-        WXPay wxPay = new WXPay(defaultWxPayConfig, false);
+        WXPay wxPay = new WXPay(defaultPayConfig, false);
 
         var map = UnifiedOrderRequest.builder()
                 .body("视频购买")
@@ -50,9 +50,9 @@ public class TestMain {
     }
 
     public static void queryOrder() throws Exception {
-        DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig("", "", "");
+        DefaultPayConfig defaultPayConfig = new DefaultPayConfig("", "", "");
 
-        WXPay wxPay = new WXPay(defaultWxPayConfig);
+        WXPay wxPay = new WXPay(defaultPayConfig);
         var result = wxPay.orderQuery(QueryOrderRequest.builder().orderId("1101415943569715200").build().toMap());
         System.out.println(result);
     }

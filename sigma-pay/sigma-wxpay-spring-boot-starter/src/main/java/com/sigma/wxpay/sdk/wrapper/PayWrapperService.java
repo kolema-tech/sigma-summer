@@ -16,11 +16,11 @@ import lombok.extern.slf4j.Slf4j;
  * desc: 微信支付包装服务
  **/
 @Slf4j
-public class WxPayWrapperService {
+public class PayWrapperService {
 
     WXPayConfig wxPayConfig;
 
-    public WxPayWrapperService(WXPayConfig wxPayConfig) {
+    public PayWrapperService(WXPayConfig wxPayConfig) {
         this.wxPayConfig = wxPayConfig;
     }
 

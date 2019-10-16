@@ -8,7 +8,7 @@ import java.io.InputStream;
  * date-time: 2019-10-
  * desc: 配置默认实现
  **/
-public class DefaultWxPayConfig extends WXPayConfig {
+public class DefaultPayConfig extends WXPayConfig {
 
     private String appId;
 
@@ -16,7 +16,7 @@ public class DefaultWxPayConfig extends WXPayConfig {
 
     private String appKey;
 
-    public DefaultWxPayConfig(String appId, String merchantId, String appKey) {
+    public DefaultPayConfig(String appId, String merchantId, String appKey) {
         this.appId = appId;
         this.merchantId = merchantId;
         this.appKey = appKey;
@@ -43,7 +43,7 @@ public class DefaultWxPayConfig extends WXPayConfig {
     }
 
     @Override
-    public IWXPayDomain getWXPayDomain() {
-        return new DefaultWXPayDomain();
+    public PayDomain getWXPayDomain() {
+        return new DefaultPayDomain();
     }
 }

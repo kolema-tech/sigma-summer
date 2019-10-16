@@ -1,9 +1,14 @@
 package com.sigma.wxpay.sdk;
 
+import lombok.ToString;
+
 /**
- * 域名管理，实现主备域名自动切换
- */
-public abstract interface IWXPayDomain {
+ * @author huston.peng
+ * @version 1.0.8
+ * date-time: 2019-10-
+ * desc: 域名管理，实现主备域名自动切换
+ **/
+public interface PayDomain {
     /**
      * 上报域名网络状况
      *
@@ -14,7 +19,8 @@ public abstract interface IWXPayDomain {
      *                          ConnectTimeoutException，表示建立网络连接异常
      *                          UnknownHostException， 表示dns解析异常
      */
-    abstract void report(final String domain, long elapsedTimeMillis, final Exception ex);
+
+    void report(final String domain, long elapsedTimeMillis, final Exception ex);
 
     /**
      * 获取域名
@@ -22,24 +28,23 @@ public abstract interface IWXPayDomain {
      * @param config 配置
      * @return 域名
      */
-    abstract DomainInfo getDomain(final WXPayConfig config);
+    DomainInfo getDomain(final WXPayConfig config);
 
-    static class DomainInfo {
-        public String domain;       //域名
-        public boolean primaryDomain;     //该域名是否为主域名。例如:api.mch.weixin.qq.com为主域名
+    @ToString
+    class DomainInfo {
+        /**
+         * 域名
+         */
+        public String domain;
+
+        /**
+         * 该域名是否为主域名。例如:api.mch.weixin.qq.com为主域名
+         */
+        public boolean primaryDomain;
 
         public DomainInfo(String domain, boolean primaryDomain) {
             this.domain = domain;
             this.primaryDomain = primaryDomain;
         }
-
-        @Override
-        public String toString() {
-            return "DomainInfo{" +
-                    "domain='" + domain + '\'' +
-                    ", primaryDomain=" + primaryDomain +
-                    '}';
-        }
     }
-
 }
