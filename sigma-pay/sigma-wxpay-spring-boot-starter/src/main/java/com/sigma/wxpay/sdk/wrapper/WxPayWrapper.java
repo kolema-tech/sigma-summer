@@ -12,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
- */
+ * @author huston.peng
+ * @version 1.0.8
+ * date-time: 2019-10-
+ * desc:
+ **/
 @Component
 @Slf4j
 public class WxPayWrapper {

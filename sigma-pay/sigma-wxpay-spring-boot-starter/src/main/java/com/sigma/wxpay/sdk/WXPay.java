@@ -51,10 +51,10 @@ public class WXPay {
         if (this.config == null) {
             throw new Exception("config is null");
         }
-        if (this.config.getAppID() == null || this.config.getAppID().trim().length() == 0) {
+        if (this.config.getAppId() == null || this.config.getAppId().trim().length() == 0) {
             throw new Exception("appid in config is empty");
         }
-        if (this.config.getMchID() == null || this.config.getMchID().trim().length() == 0) {
+        if (this.config.getMerchantId() == null || this.config.getMerchantId().trim().length() == 0) {
             throw new Exception("appid in config is empty");
         }
         if (this.config.getCertStream() == null) {
@@ -77,13 +77,13 @@ public class WXPay {
      * 向 Map 中添加 appid、mch_id、nonce_str、sign_type、sign <br>
      * 该函数适用于商户适用于统一下单等接口，不适用于红包、代金券接口
      *
-     * @param reqData
-     * @return
-     * @throws Exception
+     * @param reqData 请求BODY
+     * @return 签名后的Map
+     * @throws Exception 异常
      */
     public Map<String, String> fillRequestData(Map<String, String> reqData) throws Exception {
-        reqData.put("appid", config.getAppID());
-        reqData.put("mch_id", config.getMchID());
+        reqData.put("appid", config.getAppId());
+        reqData.put("mch_id", config.getMerchantId());
         reqData.put("nonce_str", WXPayUtil.generateNonceStr());
         if (WXPayConstants.SignType.MD5.equals(this.signType)) {
             reqData.put("sign_type", WXPayConstants.MD5);
@@ -149,8 +149,7 @@ public class WXPay {
         String msgUUID = reqData.get("nonce_str");
         String reqBody = WXPayUtil.mapToXml(reqData);
 
-        String resp = this.wxPayRequest.requestWithoutCert(urlSuffix, msgUUID, reqBody, connectTimeoutMs, readTimeoutMs, autoReport);
-        return resp;
+        return this.wxPayRequest.requestWithoutCert(urlSuffix, msgUUID, reqBody, connectTimeoutMs, readTimeoutMs, autoReport);
     }
 
 
@@ -329,14 +328,14 @@ public class WXPay {
 
 
     /**
-     * 作用：统一下单<br>
+     * 作用：统一下单接口
      * 场景：公共号支付、扫码支付、APP支付
      *
      * @param reqData          向wxpay post的请求数据
      * @param connectTimeoutMs 连接超时时间，单位是毫秒
      * @param readTimeoutMs    读超时时间，单位是毫秒
      * @return API返回数据
-     * @throws Exception
+     * @throws Exception 异常
      */
     public Map<String, String> unifiedOrder(Map<String, String> reqData, int connectTimeoutMs, int readTimeoutMs) throws Exception {
         String url;

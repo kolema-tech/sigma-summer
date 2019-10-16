@@ -2,8 +2,6 @@ package com.sigma.wxpay.sdk.test;
 
 import com.sigma.wxpay.sdk.DefaultWxPayConfig;
 import com.sigma.wxpay.sdk.WXPay;
-import com.sigma.wxpay.sdk.WXPayConstants;
-import com.sigma.wxpay.sdk.WXPayUtil;
 import com.sigma.wxpay.sdk.request.QueryOrderRequest;
 import com.sigma.wxpay.sdk.request.UnifiedOrderRequest;
 import lombok.experimental.var;
@@ -19,8 +17,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TestMain {
 
@@ -44,11 +40,11 @@ public class TestMain {
 
         var map = UnifiedOrderRequest.builder()
                 .body("视频购买")
-                .notify_url("http://kolematech.com/")
-                .out_trade_no("asdf2323423")
-                .spbill_create_ip("127.0.0.1")
-                .total_fee(1)
-                .trade_type("APP").build().toMap();
+                .notifyUrl("http://kolematech.com/")
+                .orderId("asdf2323423")
+                .spbillCreateIp("127.0.0.1")
+                .totalFee(1)
+                .tradeType("APP").build().toMap();
         var result = wxPay.unifiedOrder(map);
         System.out.println(result);
     }
@@ -61,30 +57,9 @@ public class TestMain {
         System.out.println(result);
     }
 
-    public static String GetSignKey() throws Exception {
-
-        DefaultWxPayConfig defaultWxPayConfig = new DefaultWxPayConfig();
-
-        String nonce_str = WXPayUtil.generateNonceStr();//生成随机字符
-        Map<String, String> param = new HashMap<String, String>(16);
-        param.put("mch_id", defaultWxPayConfig.getMchID());//需要真实商户号
-        param.put("nonce_str", nonce_str);//随机字符
-        param.put("total_fee", "100");
-        String sign = WXPayUtil.generateSignature(param, defaultWxPayConfig.getKey(), WXPayConstants.SignType.MD5);//通过SDK生成签名其中API_KEY为商户对应的真实密钥
-        param.put("sign", sign);
-        String xml = WXPayUtil.mapToXml(param);//将map转换为xml格式
-        String url = "https://api.mch.weixin.qq.com/sandboxnew/pay/getsignkey";//沙箱密钥获取api
-        String SignKey = post(url, xml);//
-        System.out.println("signkey+" + SignKey);
-        Map<String, String> param1 = new HashMap<String, String>(16);
-        param1 = WXPayUtil.xmlToMap(SignKey);
-        String key = param1.get("sandbox_signkey");
-        return key;
-    }
-
     public static String post(String url, String jsonString) {
         CloseableHttpResponse response = null;
-        BufferedReader in = null;
+        BufferedReader in;
         String result = "";
         try {
             HttpPost httpPost = new HttpPost(url);
@@ -96,11 +71,11 @@ public class TestMain {
             httpPost.setEntity(new StringEntity(jsonString, Charset.forName("UTF-8")));
             response = httpClient.execute(httpPost);
             in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            StringBuffer sb = new StringBuffer("");
-            String line = "";
-            String NL = System.getProperty("line.separator");
+            StringBuilder sb = new StringBuilder("");
+            String line;
+            String lineSeparator = System.getProperty("line.separator");
             while ((line = in.readLine()) != null) {
-                sb.append(line + NL);
+                sb.append(line).append(lineSeparator);
             }
             in.close();
             result = sb.toString();

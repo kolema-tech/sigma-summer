@@ -26,10 +26,17 @@ import java.security.SecureRandom;
 
 import static com.sigma.wxpay.sdk.WXPayConstants.USER_AGENT;
 
+/**
+ * @author huston.peng
+ * @version 1.0.8
+ * date-time: 2019-10-
+ * desc:
+ **/
 public class WXPayRequest {
+
     private WXPayConfig config;
 
-    public WXPayRequest(WXPayConfig config) throws Exception {
+    public WXPayRequest(WXPayConfig config) {
 
         this.config = config;
     }
@@ -37,21 +44,22 @@ public class WXPayRequest {
     /**
      * 请求，只请求一次，不做重试
      *
-     * @param domain
+     * @param domain           域名
      * @param urlSuffix
      * @param uuid
      * @param data
-     * @param connectTimeoutMs
-     * @param readTimeoutMs
+     * @param connectTimeoutMs 连接超时
+     * @param readTimeoutMs    读取超时
      * @param useCert          是否使用证书，针对退款、撤销等操作
      * @return
      * @throws Exception
      */
-    private String requestOnce(final String domain, String urlSuffix, String uuid, String data, int connectTimeoutMs, int readTimeoutMs, boolean useCert) throws Exception {
+    private String requestOnce(final String domain, String urlSuffix, String uuid, String data, int connectTimeoutMs,
+                               int readTimeoutMs, boolean useCert) throws Exception {
         BasicHttpClientConnectionManager connManager;
         if (useCert) {
             // 证书
-            char[] password = config.getMchID().toCharArray();
+            char[] password = config.getMerchantId().toCharArray();
             InputStream certStream = config.getCertStream();
             KeyStore ks = KeyStore.getInstance("PKCS12");
             ks.load(certStream, password);
@@ -103,7 +111,7 @@ public class WXPayRequest {
 
         StringEntity postEntity = new StringEntity(data, "UTF-8");
         httpPost.addHeader("Content-Type", "text/xml");
-        httpPost.addHeader("User-Agent", USER_AGENT + " " + config.getMchID());
+        httpPost.addHeader("User-Agent", USER_AGENT + " " + config.getMerchantId());
         httpPost.setEntity(postEntity);
 
         HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -113,7 +121,8 @@ public class WXPayRequest {
     }
 
 
-    private String request(String urlSuffix, String uuid, String data, int connectTimeoutMs, int readTimeoutMs, boolean useCert, boolean autoReport) throws Exception {
+    private String request(String urlSuffix, String uuid, String data, int connectTimeoutMs, int readTimeoutMs,
+                           boolean useCert, boolean autoReport) throws Exception {
         Exception exception = null;
         long elapsedTimeMillis = 0;
         long startTimestampMs = WXPayUtil.getCurrentTimestampMs();
@@ -227,7 +236,9 @@ public class WXPayRequest {
      * @param readTimeoutMs
      * @return
      */
-    public String requestWithoutCert(String urlSuffix, String uuid, String data, int connectTimeoutMs, int readTimeoutMs, boolean autoReport) throws Exception {
+
+    public String requestWithoutCert(String urlSuffix, String uuid, String data, int connectTimeoutMs,
+                                     int readTimeoutMs, boolean autoReport) throws Exception {
         return this.request(urlSuffix, uuid, data, connectTimeoutMs, readTimeoutMs, false, autoReport);
     }
 
@@ -253,7 +264,8 @@ public class WXPayRequest {
      * @param readTimeoutMs
      * @return
      */
-    public String requestWithCert(String urlSuffix, String uuid, String data, int connectTimeoutMs, int readTimeoutMs, boolean autoReport) throws Exception {
+    public String requestWithCert(String urlSuffix, String uuid, String data, int connectTimeoutMs,
+                                  int readTimeoutMs, boolean autoReport) throws Exception {
         return this.request(urlSuffix, uuid, data, connectTimeoutMs, readTimeoutMs, true, autoReport);
     }
 }

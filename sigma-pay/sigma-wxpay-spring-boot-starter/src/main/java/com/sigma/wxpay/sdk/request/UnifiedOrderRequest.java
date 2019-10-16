@@ -22,26 +22,26 @@ public class UnifiedOrderRequest {
 
     private String body;
 
-    private String out_trade_no;
+    private String orderId;
 
-    private Integer total_fee;
+    private Integer totalFee;
 
-    private String spbill_create_ip;
+    private String spbillCreateIp;
 
-    private String notify_url;
+    private String notifyUrl;
 
-    private String trade_type;
+    private String tradeType;
 
 
     public Map<String, String> toMap() {
         Map<String, String> result = new HashMap<>(16);
 
         result.put("body", body);
-        result.put("out_trade_no", out_trade_no);
-        result.put("total_fee", total_fee.toString());
-        result.put("spbill_create_ip", spbill_create_ip);
-        result.put("notify_url", notify_url);
-        result.put("trade_type", trade_type);
+        result.put("out_trade_no", orderId);
+        result.put("total_fee", totalFee.toString());
+        result.put("spbill_create_ip", spbillCreateIp);
+        result.put("notify_url", notifyUrl);
+        result.put("trade_type", tradeType);
 
         return result;
     }
