@@ -36,38 +36,41 @@ public class AliOssService {
     /**
      * 获取文件全地址
      *
-     * @param key 文件名
+     * @param bucket bucket
+     * @param key    文件名
      * @return 文件Url.
      */
-    public String getOssUrl(String key) {
-        return MessageFormat.format("https://{0}.{1}/{2}", ossProperties.getBucket(), ossProperties.getEndPoint(), key);
+    public String getOssUrl(String bucket, String key) {
+        return MessageFormat.format("https://{0}.{1}/{2}", bucket, ossProperties.getEndPoint(), key);
     }
 
     /**
      * 获取文件地址
      *
+     * @param bucket  bucket
      * @param key     文件名
      * @param seconds 过期的秒数
      * @return URL连接
      */
-    public URL getOssUrl(String key, Integer seconds) {
+    public URL getOssUrl(String bucket, String key, Integer seconds) {
         Date expiration = new Date(System.currentTimeMillis() + seconds * 1000);
-        return getClient().generatePresignedUrl(ossProperties.getBucket(), key, expiration);
+        return getClient().generatePresignedUrl(bucket, key, expiration);
     }
 
     /**
      * 上传文件
      *
+     * @param bucket      bucket
      * @param key         文件名
      * @param inputStream 文件流
      */
-    public PutObjectResult upload(String key, InputStream inputStream) {
+    public PutObjectResult upload(String bucket, String key, InputStream inputStream) {
 
         OSS client = getClient();
 
         try {
 
-            var putObjectRequest = new PutObjectRequest(ossProperties.getBucket(), key, inputStream);
+            var putObjectRequest = new PutObjectRequest(bucket, key, inputStream);
 
             return client.putObject(putObjectRequest);
 

@@ -22,8 +22,10 @@ aliyun:
   oss:
     access-key-id: XXXX
     secret: OOOOOOOO
-    bucket: pub-name
     end-point: oss-cn-hangzhou.aliyuncs.com
+    buckets:
+     - public
+     - private
 
 sigmapay:
   wxpay:

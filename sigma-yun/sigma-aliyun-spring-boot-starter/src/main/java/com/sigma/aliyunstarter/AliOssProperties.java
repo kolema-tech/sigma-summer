@@ -25,11 +25,6 @@ public class AliOssProperties {
     private String secret;
 
     /**
-     * bucket
-     */
-    private String bucket;
-
-    /**
      * endPoint
      */
     private String endPoint;

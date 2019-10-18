@@ -70,7 +70,7 @@ public class App {
     @ApiOperation(value = "get method")
     @GetMapping("/api/getFileUrl")
     public URL getUser(String key, Integer seconds) {
-        return aliOssService.getOssUrl(key, seconds);
+        return aliOssService.getOssUrl("dddss", key, seconds);
     }
 
     @ApiOperation(value = "发送短信")
@@ -92,9 +92,9 @@ public class App {
 
         String randomName = "avatar2/" + UUID.randomUUID() + extName;
 
-        aliOssService.upload(randomName, file.getInputStream());
+        aliOssService.upload("dd", randomName, file.getInputStream());
 
-        return aliOssService.getOssUrl(randomName);
+        return aliOssService.getOssUrl("dd", randomName);
     }
 
 }
