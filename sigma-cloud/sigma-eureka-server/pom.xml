@@ -7,11 +7,11 @@
     <parent>
         <artifactId>sigma-cloud</artifactId>
         <groupId>com.github.kolema-tech</groupId>
-        <version>1.0.8-SNAPSHOT</version>
+        <version>1.0.8</version>
     </parent>
 
     <artifactId>sigma-eureka-server</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>1.0.8</version>
 
     <dependencies>
         <dependency>

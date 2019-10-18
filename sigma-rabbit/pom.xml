@@ -5,12 +5,12 @@
     <parent>
         <artifactId>sigma-summer</artifactId>
         <groupId>com.github.kolema-tech</groupId>
-        <version>1.0.8-SNAPSHOT</version>
+        <version>1.0.8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sigma-rabbit</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>1.0.8</version>
 
     <dependencies>
         <dependency>
