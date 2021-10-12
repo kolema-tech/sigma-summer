@@ -14,7 +14,7 @@
     <version>${parent.version}</version>
 
     <properties>
-        <xxl-job.version>1.9.1</xxl-job.version>
+        <xxl-job.version>2.3.0</xxl-job.version>
     </properties>
 
     <dependencies>
