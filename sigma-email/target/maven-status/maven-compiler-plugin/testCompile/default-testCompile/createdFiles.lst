@@ -1,0 +1,4 @@
+com/sigma/email/gmail/LocalEmailTest.class
+com/sigma/email/gmail/GmailSchedulerTest.class
+com/sigma/email/gmail/GmailFetcherTest.class
+com/sigma/email/gmail/EmailStorageServiceTest.class

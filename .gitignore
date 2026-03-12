@@ -20,4 +20,7 @@
 /.idea
 /sigma-redis/*.iml
 /sigma-redis/sigma-redis.iml
-/sigma-redis/sigma-redis.iml
+
+# Google OAuth2 credentials - never commit real credentials
+sigma-email/src/main/resources/credentials.json
+/tmp/sigma-gmail-tokens/
