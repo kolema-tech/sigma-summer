@@ -70,6 +70,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <!-- Mockito for unit tests -->
         <dependency>
             <groupId>org.mockito</groupId>
