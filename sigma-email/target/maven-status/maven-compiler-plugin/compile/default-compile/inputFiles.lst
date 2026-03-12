@@ -1,0 +1,7 @@
+/Users/hustonpeng/github/sigma-summer/sigma-email/src/main/java/com/sigma/email/gmail/GmailFetchAutoConfiguration.java
+/Users/hustonpeng/github/sigma-summer/sigma-email/src/main/java/com/sigma/email/gmail/EmailStorageService.java
+/Users/hustonpeng/github/sigma-summer/sigma-email/src/main/java/com/sigma/email/gmail/GmailScheduler.java
+/Users/hustonpeng/github/sigma-summer/sigma-email/src/main/java/com/sigma/email/EmailSender.java
+/Users/hustonpeng/github/sigma-summer/sigma-email/src/main/java/com/sigma/email/gmail/GmailFetcher.java
+/Users/hustonpeng/github/sigma-summer/sigma-email/src/main/java/com/sigma/email/gmail/LocalEmail.java
+/Users/hustonpeng/github/sigma-summer/sigma-email/src/main/java/com/sigma/email/gmail/GmailOAuth2Config.java
