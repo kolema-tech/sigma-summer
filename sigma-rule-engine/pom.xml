@@ -18,6 +18,20 @@
             <artifactId>sigma-core</artifactId>
             <version>1.0.8</version>
         </dependency>
+
+        <!-- Drools 动态规则引擎（可选，使用 Drools 实现时引入） -->
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+            <version>7.73.0.Final</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-api</artifactId>
+            <version>7.73.0.Final</version>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
