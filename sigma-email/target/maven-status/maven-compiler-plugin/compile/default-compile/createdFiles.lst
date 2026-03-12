@@ -1,7 +1,9 @@
-com/sigma/email/gmail/GmailFetchAutoConfiguration.class
-com/sigma/email/gmail/GmailScheduler.class
+com/sigma/email/kafka/EmailMessage.class
 com/sigma/email/gmail/GmailFetcher.class
+com/sigma/email/gmail/LocalEmail.class
+com/sigma/email/gmail/GmailFetchAutoConfiguration.class
+com/sigma/email/kafka/KafkaEmailConsumer.class
+com/sigma/email/gmail/GmailScheduler.class
 com/sigma/email/gmail/EmailStorageService.class
 com/sigma/email/gmail/GmailOAuth2Config.class
 com/sigma/email/EmailSender.class
-com/sigma/email/gmail/LocalEmail.class

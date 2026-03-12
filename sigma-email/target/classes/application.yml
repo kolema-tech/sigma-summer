@@ -13,7 +13,20 @@ spring:
 view:
   path: views/emailVerify.ftl
 
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.sigma.email.kafka"
+
 sigma:
+  email:
+    kafka:
+      topic: ${SIGMA_EMAIL_KAFKA_TOPIC:email-send}
+      group-id: ${SIGMA_EMAIL_KAFKA_GROUP_ID:sigma-email-group}
   gmail:
     credentials-path: classpath:credentials.json
     tokens-dir: ${GMAIL_TOKENS_DIR:/tmp/sigma-gmail-tokens}
